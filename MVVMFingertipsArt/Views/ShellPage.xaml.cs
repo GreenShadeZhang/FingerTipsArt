@@ -4,6 +4,7 @@ using MVVMFingertipsArt.Services;
 using MVVMFingertipsArt.ViewModels;
 
 using Windows.Foundation.Metadata;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace MVVMFingertipsArt.Views
@@ -23,6 +24,8 @@ namespace MVVMFingertipsArt.Views
             KeyboardAccelerators.Add(ActivationService.BackKeyboardAccelerator);
         }
 
+        private void OnBackgroundImageOpened(object sender, RoutedEventArgs e) =>
+        BackgroundImage.Visibility = Visibility.Visible;
         private void HideNavViewBackButton()
         {
             if (ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 6))

@@ -11,8 +11,7 @@
       xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
       xmlns:i="using:Microsoft.Xaml.Interactivity"
       xmlns:data="using:MVVMFingertipsArt.Models"
-      xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
-      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+   >
     <Grid>
    
             <Grid>
@@ -21,8 +20,114 @@
                     <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-
-                <StackPanel Orientation="Horizontal"
+    
+                <Grid x:Name="Header"
+                      Height="300"
+                  Background="{StaticResource InAppBackgroundAcrylicBrush}"
+                  VerticalAlignment="Top">
+                    <!--<Rectangle x:Name="BackgroundRectangle"
+                               Height="300"
+                               Width="1050"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Top">
+                        <Rectangle.Fill>
+                            <ImageBrush x:Name="BackgroundImage"
+                                        ImageSource="ms-appx:///Assets/b.jpg"
+                                        Stretch="UniformToFill"
+                                        Opacity="0.6" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Rectangle x:Name="OverlayRectangle"
+                               Fill="#BFCFB5C0"
+                               Width="1050"
+                               Height="300"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Top" />-->
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                x:Name="TextContainer">
+                        <Ellipse 
+                                 Height="150"
+                             x:Name="HereElement"
+                                 Width="150"
+                                 Margin="20,70,20,20">
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource="ms-appx:///Assets/a.jpg"
+                                            Stretch="UniformToFill" />
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <StackPanel Orientation="Vertical"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                x:Name="HeroDetailsElement"
+                                    Margin="0,70,0,0">
+                            <TextBlock x:Name="TitleBlock"
+                                       Text="Lorem Ipsum"
+                                       Foreground="White"
+                                       FontSize="20" />
+                            <TextBlock x:Name="SubtitleBlock"
+                                       Text="dolor sit amet"
+                                       Foreground="White"
+                                       FontSize="10"
+                                       Margin="0,10,0,0" />
+                            <TextBlock x:Name="Blurb"
+                                       Foreground="White"
+                                       FontSize="12"
+                                       Width="400"
+                                       TextWrapping="Wrap"
+                                       Margin="0,20,0,0">
+                                        <Run>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
+                                            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                                        </Run>
+                            </TextBlock>
+                            <TextBlock x:Name="MoreText"
+                                       Text="More"
+                                       Foreground="White"
+                                       Margin="0,10,0,0" />
+                            <StackPanel Orientation="Horizontal"
+                                        HorizontalAlignment="Left"
+                                        Margin="0,10,0,0">
+                                <StackPanel Orientation="Horizontal"
+                                            x:Name="ButtonPanel">
+                                    <Button Padding="0"
+                                            Foreground="White"
+                                            Click="Button_Click"
+                                            Style="{ThemeResource TextBlockButtonStyle}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <SymbolIcon Symbol="Play" />
+                                            <TextBlock x:Uid="playButton"
+                                                       Margin="10,0,0,0" />
+                                        </StackPanel>
+                                    </Button>
+                                    <Button Padding="0"
+                                            Foreground="White"
+                                            Click="Button_Click_1"
+                                            Style="{ThemeResource TextBlockButtonStyle}">
+                                        <StackPanel Orientation="Horizontal"
+                                                    Margin="20,0,0,0">
+                                            <SymbolIcon Symbol="Add" />
+                                            <TextBlock x:Uid="AddData"
+                                                       Margin="10,0,0,0" />
+                                        </StackPanel>
+                                    </Button>
+                                    <Button Padding="0"
+                                            Foreground="White"
+                                            Style="{ThemeResource TextBlockButtonStyle}">
+                                        <StackPanel Orientation="Horizontal"
+                                                    Margin="20,0,0,0">
+                                            <SymbolIcon Symbol="More" />
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+       
+            <!--<StackPanel Orientation="Horizontal"
                             Background="{ThemeResource SystemControlAcrylicElementBrush}">
                     <StackPanel Height="260"
                               
@@ -47,7 +152,7 @@
                                    Text="{x:Bind ViewModel.Source.Id}"></TextBlock>
                     </StackPanel>
 
-                </StackPanel>
+                </StackPanel>-->
             <TextBlock Text="我是一段测试文字" x:Name="ceshi" Grid.Row="1">
             </TextBlock>
             <GridView x:Name="gridView"
@@ -64,7 +169,7 @@
                     </i:Interaction.Behaviors>
                     <GridView.ItemTemplate>
                         <DataTemplate x:DataType="data:Pic">
-                            <StackPanel>
+                            <StackPanel Background="{StaticResource InAppBackgroundAcrylicBrush}">
                                 <Image Margin="20"
                                      Width="200"
                                        x:Name="ItemThumbnail"

@@ -21,7 +21,7 @@ namespace MVVMFingertipsArt.Views
         private static int _persistedItemIndex = -1;
         public HomePage()
         {
-            this.NavigationCacheMode = NavigationCacheMode.Enabled;
+          this.NavigationCacheMode = NavigationCacheMode.Enabled;
             InitializeComponent();
             ViewModel.Initialize(HomeGrid);
 
@@ -94,5 +94,7 @@ namespace MVVMFingertipsArt.Views
 
             itemContainer.Loaded -= this.ItemContainer_Loaded;
         }
+
+       
     }
 }

@@ -9,7 +9,7 @@
       KeyDown="OnPageKeyDown"
       xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
       xmlns:data="using:MVVMFingertipsArt.Models"
-      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    >
     <Page.Resources>
         <Storyboard x:Name="showFlipView"
                     Completed="OnShowFlipViewCompleted">

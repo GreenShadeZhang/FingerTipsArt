@@ -43,6 +43,20 @@ namespace MVVMFingertipsArt.ViewModels
         }
 
 
+        private ObservableCollection<GridViewDataTemplate> _gridViewDataTemplates2 = SqliteGetdataService.GetData();
+
+        public ObservableCollection<GridViewDataTemplate> Data2
+        {
+            get
+            {
+                return _gridViewDataTemplates2;
+            }
+            set
+            {
+                Set(ref _gridViewDataTemplates2, value);
+            }
+        }
+
         public async Task LoadAnimationAsync()
         {
 

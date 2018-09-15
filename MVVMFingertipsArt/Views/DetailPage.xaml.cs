@@ -1,4 +1,5 @@
 ﻿using MVVMFingertipsArt.Models;
+using MVVMFingertipsArt.Services;
 using MVVMFingertipsArt.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -113,5 +114,14 @@ namespace MVVMFingertipsArt.Views
             gridView.Visibility = Visibility.Visible;
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Frame.Navigate(typeof(PlayerPage),ViewModel.Source.Movie);
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+         string str= SqliteInsertDataService.InsertDataById(ViewModel.Source.Id);
+        }
     }
 }

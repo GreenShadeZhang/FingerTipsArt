@@ -6,50 +6,107 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:helpers="using:MVVMFingertipsArt.Helpers"
     xmlns:views="using:MVVMFingertipsArt.Views"
-    xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
+      xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
+      xmlns:extensions="using:Microsoft.Toolkit.Uwp.UI.Extensions"
+      xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     mc:Ignorable="d">
+   
+    <Grid >
 
-    <NavigationView
-        x:Name="navigationView"
-        SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
-     AlwaysShowHeader="True"
-        Header="{x:Bind ViewModel.Selected.Content}"
-        IsSettingsVisible="True"
-        Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
-        <NavigationView.MenuItems>
-            <!--
+        <Grid x:Name="BackgroundPanel">
+            <Image x:Name="BackgroundImage"
+                   extensions:VisualExtensions.NormalizedCenterPoint="0.5,0.5,0"
+                   ImageOpened="OnBackgroundImageOpened"
+                   Source="ms-appx:///Assets/IMG_1558.JPG"
+                   Stretch="UniformToFill"
+                   Visibility="Collapsed">
+                <animations:Implicit.ShowAnimations>
+                    <animations:ScaleAnimation From="1.6"
+                                               To="1"
+                                               Duration="0:0:2" />
+                    <animations:OpacityAnimation From="0"
+                                                 To="1"
+                                                 Duration="0:0:2" />
+                </animations:Implicit.ShowAnimations>
+            </Image>
+
+            <!--<Rectangle x:Name="TintShade"
+                       Opacity="0.1"
+                       Fill="#BFCFB5C0">
+               
+            </Rectangle>-->
+
+            <Rectangle x:Name="DarkOverlay"
+                       Opacity="0.7"
+                       Fill=
+                      
+                      "LightSkyBlue"
+                     />
+
+
+        </Grid>
+
+        <NavigationView Style="{StaticResource NavigationViewStyleNav}"  x:Name="navigationView"
+                        SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
+                        AlwaysShowHeader="False"
+                 ManipulationMode="All"
+                      Pivot.SlideInAnimationGroup="GroupThree"
+                       
+                        IsSettingsVisible="True"
+                        >
+            <NavigationView.MenuItems>
+                <!--
             TODO WTS: Change the symbols for each item as appropriate for your app
             More on Segoe UI Symbol icons: https://docs.microsoft.com/windows/uwp/style/segoe-ui-symbol-font
             Or to use an IconElement instead of a Symbol see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/projectTypes/navigationpane.md
             Edit String/en-US/Resources.resw: Add a menu item title for each page
             -->
-            <NavigationViewItem x:Uid="Shell_Home" Icon="Document" helpers:NavHelper.NavigateTo="views:HomePage" />
-        </NavigationView.MenuItems>
-        <NavigationView.HeaderTemplate>
-            <DataTemplate>
-                <TextBlock
-                    Style="{StaticResource TitleTextBlockStyle}"
-                    Margin="12,0,0,0"
-                    VerticalAlignment="Center"
-                    Text="{Binding}" />
-            </DataTemplate>
-        </NavigationView.HeaderTemplate>
-        <i:Interaction.Behaviors>
-            <ic:EventTriggerBehavior EventName="ItemInvoked">
-                <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemInvokedCommand}" />
-            </ic:EventTriggerBehavior>
-        </i:Interaction.Behaviors>
-        <Grid>
-            <Frame x:Name="shellFrame">
-                <Frame.ContentTransitions>
-                    <TransitionCollection>
-                        <NavigationThemeTransition>
-                            <EntranceNavigationTransitionInfo />
-                        </NavigationThemeTransition>
-                    </TransitionCollection>
-                </Frame.ContentTransitions>
-            </Frame>
-        </Grid>
-    </NavigationView>
+                <NavigationViewItem x:Uid="Shell_Home"
+                                    Icon="Document"
+                                    helpers:NavHelper.NavigateTo="views:HomePage" />
+                <NavigationViewItem x:Uid="Shell_Jian"
+                                  
+                                    helpers:NavHelper.NavigateTo="views:PapercutsPage">
+                    <NavigationViewItem.Icon>
+                        <FontIcon FontFamily="Segoe MDL2 Assets"
+                                  Glyph="&#xE122;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem x:Uid="Shell_Favorites"
+                                    helpers:NavHelper.NavigateTo="views:FavoritesPage">
+                    <NavigationViewItem.Icon>
+                        <FontIcon FontFamily="Segoe MDL2 Assets"
+                                  Glyph="&#xE196;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+            </NavigationView.MenuItems>
+         
+         
+            <!--<NavigationView.HeaderTemplate>
+                <DataTemplate>
+                    <TextBlock Style="{StaticResource TitleTextBlockStyle}"
+                               Margin="12,0,0,0"
+                               VerticalAlignment="Center"
+                               Text="{Binding}" />
+                </DataTemplate>
+            </NavigationView.HeaderTemplate>-->
+            <i:Interaction.Behaviors>
+                <ic:EventTriggerBehavior EventName="ItemInvoked">
+                    <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemInvokedCommand}" />
+                </ic:EventTriggerBehavior>
+            </i:Interaction.Behaviors>
+            <Grid>
+                <Frame x:Name="shellFrame">
+                    <Frame.ContentTransitions>
+                        <TransitionCollection>
+                            <NavigationThemeTransition>
+                                <EntranceNavigationTransitionInfo />
+                            </NavigationThemeTransition>
+                        </TransitionCollection>
+                    </Frame.ContentTransitions>
+                </Frame>
+            </Grid>
+        </NavigationView>
+    </Grid>
 </Page>

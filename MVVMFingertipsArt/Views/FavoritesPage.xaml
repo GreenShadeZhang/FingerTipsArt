@@ -1,0 +1,69 @@
+﻿<Page
+    x:Class="MVVMFingertipsArt.Views.FavoritesPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MVVMFingertipsArt.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:data="using:MVVMFingertipsArt.Models"
+      mc:Ignorable="d"
+    >
+
+    <Grid>
+        <GridView ItemsSource="{x:Bind ViewModel.Data ,Mode=OneWay}"
+                  x:Name="HomeGrid"
+                  Grid.Row="1"
+                  IsItemClickEnabled="True"
+                 
+                  ItemContainerTransitions="{x:Null}"
+                 >
+
+
+
+
+            <GridView.HeaderTemplate>
+                <DataTemplate>
+                    <StackPanel CornerRadius="40">
+                        <!--<Image   Source="ms-appx:///Assets/B.JPG"
+                                         Height="400"
+                                         Stretch="UniformToFill" />-->
+                        <Image x:Name="Logo"
+                               VerticalAlignment="Top"
+                               Margin="0,30,0,0"
+                               HorizontalAlignment="Left"
+                               Width="500">
+                            <Image.Source>
+                                <SvgImageSource UriSource="ms-appx:///Assets/BuildCast.svg" />
+                            </Image.Source>
+                        </Image>
+                    </StackPanel>
+                </DataTemplate>
+            </GridView.HeaderTemplate>
+            <GridView.ItemTemplate>
+                <DataTemplate x:DataType="data:GridViewDataTemplate">
+
+                    <StackPanel Margin="20"
+                                CornerRadius="40"
+                                Background="{StaticResource InAppBackgroundAcrylicBrush}">
+
+                        <Image x:Name="av"
+                               Width="180"
+                               Source="{x:Bind Avatar}">
+                        </Image>
+
+                        <TextBlock  Text="{x:Bind Name}"
+                                    FontSize="36"
+                                    HorizontalAlignment="Center"
+                                    FontFamily="微软雅黑" />
+
+                    </StackPanel>
+
+               
+
+                </DataTemplate>
+            </GridView.ItemTemplate>
+
+        </GridView>
+
+    </Grid>
+</Page>

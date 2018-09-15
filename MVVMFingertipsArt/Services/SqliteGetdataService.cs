@@ -76,5 +76,45 @@ namespace MVVMFingertipsArt.Services
             return entries;
         }
 
+        public static ObservableCollection<GridViewDataTemplate> GetFavoritesData()
+        {
+            ObservableCollection<GridViewDataTemplate> entries = new ObservableCollection<GridViewDataTemplate>();
+
+
+
+            using (SqliteConnection db =
+                new SqliteConnection("FileName=mynew.db"))
+            {
+                db.Open();
+
+                SqliteCommand selectCommand = new SqliteCommand
+                    ("select * from favorites", db);
+
+                SqliteDataReader query = selectCommand.ExecuteReader();
+
+                while (query.Read())
+                {
+                    entries.Add(
+                        new GridViewDataTemplate()
+                        {
+                            Id = query.GetInt32(0),
+                            Name = query.GetString(1),
+                            Avatar = query.GetString(2),
+                            Age = query.GetString(3),
+                            Movie = query.GetString(4),
+                            Pic = new ObservableCollection<Picture>() {
+                                new Picture() { Pic1 = query.GetString(2), PicText = query.GetString(2)},
+                            new Picture() { Pic1 = query.GetString(2), PicText = query.GetString(2)},
+                            new Picture() { Pic1 = query.GetString(1), PicText = query.GetString(1)},
+                            new Picture() { Pic1 = query.GetString(1), PicText = query.GetString(1)}}
+                        });
+                }
+
+                db.Close();
+            }
+
+            return entries;
+        }
+
     }
 }
