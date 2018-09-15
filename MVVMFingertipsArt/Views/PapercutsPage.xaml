@@ -9,6 +9,8 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-
+        <TextBlock>
+            i am a new file to test the github use method
+        </TextBlock>
     </Grid>
 </Page>
