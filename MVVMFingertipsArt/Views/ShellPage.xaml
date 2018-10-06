@@ -55,6 +55,19 @@
                        
                         IsSettingsVisible="True"
                         >
+            <!--<NavigationView.HeaderTemplate>
+                <DataTemplate>
+                    <Image x:Name="Logo"
+                                       VerticalAlignment="Top"
+                                       Margin="0,30,0,0"
+                                    HorizontalAlignment="Left"
+                                       Width="500">
+                        <Image.Source>
+                            <SvgImageSource UriSource="ms-appx:///Assets/BuildCast.svg" />
+                        </Image.Source>
+                    </Image>
+                </DataTemplate>
+            </NavigationView.HeaderTemplate>-->
             <NavigationView.MenuItems>
                 <!--
             TODO WTS: Change the symbols for each item as appropriate for your app
