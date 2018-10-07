@@ -169,7 +169,7 @@
                     </i:Interaction.Behaviors>
                     <GridView.ItemTemplate>
                         <DataTemplate x:DataType="data:Pic">
-                            <StackPanel Background="{StaticResource InAppBackgroundAcrylicBrush}">
+                            <Grid>
                                 <Image Margin="20"
                                      Width="200"
                                        x:Name="ItemThumbnail"
@@ -177,7 +177,7 @@
                                    Source="{x:Bind Pic1}">
                                 </Image>
                                 <!--<TextBlock Text="{x:Bind Name}"></TextBlock>-->
-                            </StackPanel>
+                            </Grid>
                         </DataTemplate>
                     </GridView.ItemTemplate>
                 </GridView>

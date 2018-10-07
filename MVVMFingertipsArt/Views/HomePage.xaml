@@ -79,7 +79,7 @@
                     <Grid
                  
                           CornerRadius="20"
-                         Background="{ThemeResource SystemControlAcrylicWindowBrush}"
+                         
                             Margin="20">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
