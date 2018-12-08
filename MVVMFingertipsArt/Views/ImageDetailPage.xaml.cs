@@ -51,11 +51,11 @@ namespace MVVMFingertipsArt.Views
         }
         private void OnPageKeyDown(object sender, KeyRoutedEventArgs e)
         {
-            if (e.Key == VirtualKey.Escape && NavigationService.CanGoBack)
-            {
-                NavigationService.GoBack();
-                e.Handled = true;
-            }
+            //if (e.Key == VirtualKey.Escape && NavigationService.CanGoBack)
+            //{
+            //    NavigationService.GoBack();
+            //    e.Handled = true;
+            //}
         }
     }
 }

@@ -13,19 +13,31 @@
       xmlns:data="using:MVVMFingertipsArt.Models"
    >
     <Grid>
-   
-            <Grid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="800" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="Header.Margin" Value="0,0,0,0" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups >
+        <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-    
-                <Grid x:Name="Header"
-                      Height="300"
+
+            <Grid x:Name="Header"
+                      Height="220"
+                  Margin="0,80,0,0"
                   Background="{StaticResource InAppBackgroundAcrylicBrush}"
                   VerticalAlignment="Top">
-                    <!--<Rectangle x:Name="BackgroundRectangle"
+                <!--<Rectangle x:Name="BackgroundRectangle"
                                Height="300"
                                Width="1050"
                                HorizontalAlignment="Left"
@@ -43,35 +55,35 @@
                                Height="300"
                                HorizontalAlignment="Left"
                                VerticalAlignment="Top" />-->
-                    <StackPanel Orientation="Horizontal"
+                <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top"
                                 x:Name="TextContainer">
-                        <Ellipse 
+                    <Ellipse 
                                  Height="150"
                              x:Name="HereElement"
                                  Width="150"
-                                 Margin="20,70,20,20">
-                            <Ellipse.Fill>
-                                <ImageBrush ImageSource="ms-appx:///Assets/a.jpg"
+                                >
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="ms-appx:///Assets/a.jpg"
                                             Stretch="UniformToFill" />
-                            </Ellipse.Fill>
-                        </Ellipse>
-                        <StackPanel Orientation="Vertical"
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <StackPanel Orientation="Vertical"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"
                                 x:Name="HeroDetailsElement"
-                                    Margin="0,70,0,0">
-                            <TextBlock x:Name="TitleBlock"
+                                  >
+                        <TextBlock x:Name="TitleBlock"
                                        Text="Lorem Ipsum"
                                        Foreground="White"
                                        FontSize="20" />
-                            <TextBlock x:Name="SubtitleBlock"
+                        <TextBlock x:Name="SubtitleBlock"
                                        Text="dolor sit amet"
                                        Foreground="White"
                                        FontSize="10"
                                        Margin="0,10,0,0" />
-                            <TextBlock x:Name="Blurb"
+                        <TextBlock x:Name="Blurb"
                                        Foreground="White"
                                        FontSize="12"
                                        Width="400"
@@ -82,77 +94,50 @@
                                             incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
                                             exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
                                         </Run>
-                            </TextBlock>
-                            <TextBlock x:Name="MoreText"
+                        </TextBlock>
+                        <TextBlock x:Name="MoreText"
                                        Text="More"
                                        Foreground="White"
                                        Margin="0,10,0,0" />
-                            <StackPanel Orientation="Horizontal"
+                        <StackPanel Orientation="Horizontal"
                                         HorizontalAlignment="Left"
                                         Margin="0,10,0,0">
-                                <StackPanel Orientation="Horizontal"
+                            <StackPanel Orientation="Horizontal"
                                             x:Name="ButtonPanel">
-                                    <Button Padding="0"
+                                <Button Padding="0"
                                             Foreground="White"
                                             Click="Button_Click"
                                             Style="{ThemeResource TextBlockButtonStyle}">
-                                        <StackPanel Orientation="Horizontal">
-                                            <SymbolIcon Symbol="Play" />
-                                            <TextBlock x:Uid="playButton"
+                                    <StackPanel Orientation="Horizontal">
+                                        <SymbolIcon Symbol="Play" />
+                                        <TextBlock x:Uid="playButton"
                                                        Margin="10,0,0,0" />
-                                        </StackPanel>
-                                    </Button>
-                                    <Button Padding="0"
+                                    </StackPanel>
+                                </Button>
+                                <Button Padding="0"
                                             Foreground="White"
                                             Click="Button_Click_1"
                                             Style="{ThemeResource TextBlockButtonStyle}">
-                                        <StackPanel Orientation="Horizontal"
+                                    <StackPanel Orientation="Horizontal"
                                                     Margin="20,0,0,0">
-                                            <SymbolIcon Symbol="Add" />
-                                            <TextBlock x:Uid="AddData"
+                                        <SymbolIcon Symbol="Add" />
+                                        <TextBlock x:Uid="AddData"
                                                        Margin="10,0,0,0" />
-                                        </StackPanel>
-                                    </Button>
-                                    <Button Padding="0"
+                                    </StackPanel>
+                                </Button>
+                                <Button Padding="0"
                                             Foreground="White"
                                             Style="{ThemeResource TextBlockButtonStyle}">
-                                        <StackPanel Orientation="Horizontal"
+                                    <StackPanel Orientation="Horizontal"
                                                     Margin="20,0,0,0">
-                                            <SymbolIcon Symbol="More" />
-                                        </StackPanel>
-                                    </Button>
-                                </StackPanel>
+                                        <SymbolIcon Symbol="More" />
+                                    </StackPanel>
+                                </Button>
                             </StackPanel>
                         </StackPanel>
                     </StackPanel>
-                </Grid>
-       
-            <!--<StackPanel Orientation="Horizontal"
-                            Background="{ThemeResource SystemControlAcrylicElementBrush}">
-                    <StackPanel Height="260"
-                              
-                                Width="260">
-                     
-                            <Image Margin="20"
-                                   x:Name="HereElement"
-                                
-                                   Source="{x:Bind ViewModel.Source.Pic1}">
-                            </Image>
-                       
-                    </StackPanel>
-                    <StackPanel x:Name="HeroDetailsElement"
-                                Margin="20,0"
-                                VerticalAlignment="Bottom"
-                                MaxWidth="500"
-                               >
-
-                        <TextBlock Text="{x:Bind ViewModel.Source.Name}"
-                                   FontSize="50"></TextBlock>
-                        <TextBlock TextWrapping="WrapWholeWords"
-                                   Text="{x:Bind ViewModel.Source.Id}"></TextBlock>
-                    </StackPanel>
-
-                </StackPanel>-->
+                </StackPanel>
+            </Grid>
             <TextBlock Text="我是一段测试文字" x:Name="ceshi" Grid.Row="1">
             </TextBlock>
             <GridView x:Name="gridView"

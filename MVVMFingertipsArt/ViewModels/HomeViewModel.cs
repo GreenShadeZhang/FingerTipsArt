@@ -28,7 +28,7 @@ namespace MVVMFingertipsArt.ViewModels
         {
             _imagesGridView = imagesGridView;
         }
-        private ObservableCollection<GridViewDataTemplate> _gridViewDataTemplates = SqliteGetdataService.GetData();
+        private ObservableCollection<GridViewDataTemplate> _gridViewDataTemplates = null;
 
         public ObservableCollection<GridViewDataTemplate> Data
         {
@@ -43,7 +43,7 @@ namespace MVVMFingertipsArt.ViewModels
         }
 
 
-        private ObservableCollection<GridViewDataTemplate> _gridViewDataTemplates2 = SqliteGetdataService.GetData();
+        private ObservableCollection<GridViewDataTemplate> _gridViewDataTemplates2 = null;
 
         public ObservableCollection<GridViewDataTemplate> Data2
         {
@@ -82,7 +82,7 @@ namespace MVVMFingertipsArt.ViewModels
             localSettings.Values["ID"] = gridView.Id;
             //  ApplicationData.Current.LocalSettings.SaveString("ID", gridView.Id.ToString());
               var animation = _imagesGridView.PrepareConnectedAnimation("ca1", gridView, "av");
-            NavigationService.Frame.Navigate(typeof(DetailPage));
+            ShellPage.RootFrame.Navigate(typeof(DetailPage));
        
         }
 

@@ -12,7 +12,7 @@ namespace MVVMFingertipsArt.ViewModels
 {
    public class FavoritesViewModel : Observable
     {
-        private ObservableCollection<GridViewDataTemplate> _gridViewDataTemplates =SqliteGetdataService.GetFavoritesData();
+        private ObservableCollection<GridViewDataTemplate> _gridViewDataTemplates =null;
 
         public ObservableCollection<GridViewDataTemplate> Data
         {

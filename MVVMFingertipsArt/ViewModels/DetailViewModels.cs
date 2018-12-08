@@ -51,7 +51,7 @@ namespace MVVMFingertipsArt.ViewModels
             Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
           Int32  sampleImageId = (Int32)localSettings.Values["ID"];
            
-            Source = SqliteGetDataByIdService.GetDataById(sampleImageId);
+            Source = null;
         }
 
         public void Initialize(GridView imagesGridView)
@@ -85,7 +85,7 @@ namespace MVVMFingertipsArt.ViewModels
             var selected = args.ClickedItem as Pic;
           
              _imagesGridView.PrepareConnectedAnimation(ImageGalleryAnimationOpen, selected, "ItemThumbnail");
-            NavigationService.Navigate<ImageDetailPage>(selected.Id);
+            ShellPage.RootFrame.Navigate(typeof(ImageDetailPage),selected.Id);
         }
 
        

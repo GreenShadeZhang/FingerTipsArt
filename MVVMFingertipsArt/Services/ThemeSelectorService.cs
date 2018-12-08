@@ -36,7 +36,7 @@ namespace MVVMFingertipsArt.Services
             {
                 frameworkElement.RequestedTheme = Theme;
             }
-          //  SetupTitlebar();
+            SetupTitlebar();
         }
 
 

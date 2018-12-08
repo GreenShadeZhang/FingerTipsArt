@@ -116,12 +116,12 @@ namespace MVVMFingertipsArt.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Frame.Navigate(typeof(PlayerPage),ViewModel.Source.Movie);
+            ShellPage.RootFrame.Navigate(typeof(PlayerPage),ViewModel.Source.Movie);
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-         string str= SqliteInsertDataService.InsertDataById(ViewModel.Source.Id);
+         //string str= SqliteInsertDataService.InsertDataById(ViewModel.Source.Id);
         }
     }
 }

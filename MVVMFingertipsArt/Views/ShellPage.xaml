@@ -4,16 +4,23 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:helpers="using:MVVMFingertipsArt.Helpers"
-    xmlns:views="using:MVVMFingertipsArt.Views"
       xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
       xmlns:extensions="using:Microsoft.Toolkit.Uwp.UI.Extensions"
-      xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
-    xmlns:i="using:Microsoft.Xaml.Interactivity"
     mc:Ignorable="d">
-   
-    <Grid >
 
+    <Grid >
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{x:Bind NavShell.CompactModeThresholdWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="NavShell.PaneDisplayMode" Value="Top" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups >
         <Grid x:Name="BackgroundPanel">
             <Image x:Name="BackgroundImage"
                    extensions:VisualExtensions.NormalizedCenterPoint="0.5,0.5,0"
@@ -30,87 +37,25 @@
                                                  Duration="0:0:2" />
                 </animations:Implicit.ShowAnimations>
             </Image>
-
             <!--<Rectangle x:Name="TintShade"
                        Opacity="0.1"
-                       Fill="#BFCFB5C0">
-               
+                       Fill="#BFCFB5C0">               
             </Rectangle>-->
-
             <Rectangle x:Name="DarkOverlay"
                        Opacity="0.7"
-                       Fill=
-                      
-                      "LightSkyBlue"
-                     />
-
-
+                       Fill="Azure" />
         </Grid>
-
-        <NavigationView Style="{StaticResource NavigationViewStyleNav}"  x:Name="navigationView"
-                        SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
-                        AlwaysShowHeader="False"
-                 ManipulationMode="All"
-                      Pivot.SlideInAnimationGroup="GroupThree"
-                       
-                        IsSettingsVisible="True"
-                        >
-            <!--<NavigationView.HeaderTemplate>
-                <DataTemplate>
-                    <Image x:Name="Logo"
-                                       VerticalAlignment="Top"
-                                       Margin="0,30,0,0"
-                                    HorizontalAlignment="Left"
-                                       Width="500">
-                        <Image.Source>
-                            <SvgImageSource UriSource="ms-appx:///Assets/BuildCast.svg" />
-                        </Image.Source>
-                    </Image>
-                </DataTemplate>
-            </NavigationView.HeaderTemplate>-->
+        <!-- Style="{StaticResource NavigationViewStyleNav}"-->
+        <NavigationView  x:Name="NavShell"
+                        ItemInvoked="NavShell_ItemInvoked" >
             <NavigationView.MenuItems>
-                <!--
-            TODO WTS: Change the symbols for each item as appropriate for your app
-            More on Segoe UI Symbol icons: https://docs.microsoft.com/windows/uwp/style/segoe-ui-symbol-font
-            Or to use an IconElement instead of a Symbol see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/projectTypes/navigationpane.md
-            Edit String/en-US/Resources.resw: Add a menu item title for each page
-            -->
-                <NavigationViewItem x:Uid="Shell_Home"
-                                    Icon="Document"
-                                    helpers:NavHelper.NavigateTo="views:HomePage" />
-                <NavigationViewItem x:Uid="Shell_Jian"
-                                  
-                                    helpers:NavHelper.NavigateTo="views:PapercutsPage">
-                    <NavigationViewItem.Icon>
-                        <FontIcon FontFamily="Segoe MDL2 Assets"
-                                  Glyph="&#xE122;" />
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
-                <NavigationViewItem x:Uid="Shell_Favorites"
-                                    helpers:NavHelper.NavigateTo="views:FavoritesPage">
-                    <NavigationViewItem.Icon>
-                        <FontIcon FontFamily="Segoe MDL2 Assets"
-                                  Glyph="&#xE196;" />
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
+                <NavigationViewItem Icon="Home" Content="Home" Tag="HomePage" />
+                <NavigationViewItem Icon="Bookmarks" Content="Book" Tag="Favorites" />
+                <!--<NavigationViewItem Content="历史天气" Tag="History" />-->
+                <NavigationViewItem Icon="Add" Content="bing" Tag="BingPic" />
             </NavigationView.MenuItems>
-         
-         
-            <!--<NavigationView.HeaderTemplate>
-                <DataTemplate>
-                    <TextBlock Style="{StaticResource TitleTextBlockStyle}"
-                               Margin="12,0,0,0"
-                               VerticalAlignment="Center"
-                               Text="{Binding}" />
-                </DataTemplate>
-            </NavigationView.HeaderTemplate>-->
-            <i:Interaction.Behaviors>
-                <ic:EventTriggerBehavior EventName="ItemInvoked">
-                    <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemInvokedCommand}" />
-                </ic:EventTriggerBehavior>
-            </i:Interaction.Behaviors>
             <Grid>
-                <Frame x:Name="shellFrame">
+                <Frame x:Name="ContentFrame" Navigated="ContentFrame_Navigated">
                     <Frame.ContentTransitions>
                         <TransitionCollection>
                             <NavigationThemeTransition>
