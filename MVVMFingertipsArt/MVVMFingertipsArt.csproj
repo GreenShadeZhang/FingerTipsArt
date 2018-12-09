@@ -303,6 +303,7 @@
   <ItemGroup>
     <None Include=".editorconfig" />
     <Content Include="Assets\mynew.db" />
+    <Content Include="Assets\blogging.db" />
     <None Include="MVVMFingertipsArt_TemporaryKey.pfx" />
     <PRIResource Include="Strings\zh-cn\Resources.resw" />
   </ItemGroup>

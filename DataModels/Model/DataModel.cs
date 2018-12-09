@@ -10,7 +10,7 @@ namespace DataModels.Model
         public DbSet<Origami> origamis { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=blogging.db");
+            optionsBuilder.UseSqlite("Data Source=mynew.db");
         }
     }
 
