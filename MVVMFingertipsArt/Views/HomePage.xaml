@@ -31,7 +31,7 @@
             </DataTemplate>
         </controls:AdaptiveGridView.HeaderTemplate>
         <controls:AdaptiveGridView.ItemTemplate>
-            <DataTemplate x:DataType="data:GridViewDataTemplate">
+            <DataTemplate x:DataType="data:HomeItemData">
                 <Grid Background="{StaticResource InAppBackgroundAcrylicBrush}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>

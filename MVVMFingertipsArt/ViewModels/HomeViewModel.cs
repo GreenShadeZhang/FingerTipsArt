@@ -22,15 +22,15 @@ namespace MVVMFingertipsArt.ViewModels
         public HomeViewModel()
         {
         }
-        GridViewDataTemplate gridView;
+        HomeItemData gridView;
         private GridView _imagesGridView;
         public void Initialize(GridView imagesGridView)
         {
             _imagesGridView = imagesGridView;
         }
-        private ObservableCollection<GridViewDataTemplate> _gridViewDataTemplates = null;
+        private List<HomeItemData> _gridViewDataTemplates = GetDbData.GetHomeData();
 
-        public ObservableCollection<GridViewDataTemplate> Data
+        public List<HomeItemData> Data
         {
             get
             {
@@ -43,9 +43,9 @@ namespace MVVMFingertipsArt.ViewModels
         }
 
 
-        private ObservableCollection<GridViewDataTemplate> _gridViewDataTemplates2 = null;
+        private ObservableCollection<HomeItemData> _gridViewDataTemplates2 = null;
 
-        public ObservableCollection<GridViewDataTemplate> Data2
+        public ObservableCollection<HomeItemData> Data2
         {
             get
             {
@@ -77,12 +77,12 @@ namespace MVVMFingertipsArt.ViewModels
         }
         public void GridView_ItemClick(object sender, ItemClickEventArgs e)
         {
-         gridView = e.ClickedItem as GridViewDataTemplate;
+         gridView = e.ClickedItem as HomeItemData;
             Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
-            localSettings.Values["ID"] = gridView.Id;
+            localSettings.Values["ID"] = gridView.OrigamiId;
             //  ApplicationData.Current.LocalSettings.SaveString("ID", gridView.Id.ToString());
               var animation = _imagesGridView.PrepareConnectedAnimation("ca1", gridView, "av");
-            ShellPage.RootFrame.Navigate(typeof(DetailPage));
+            ShellPage.RootFrame.Navigate(typeof(DetailPage),gridView.OrigamiId);
        
         }
 

@@ -11,19 +11,29 @@ namespace MVVMFingertipsArt.Services
 {
    public class GetDbData
     {
-        public  List<OrigamiDetail> GetOrigamiData()
+        public static  OrigamiDetail GetOrigamiData(int id)
         {
-            var detail = new List<OrigamiDetail>();
+            Origami origami = null;
+            using (var db = new OrigamiContext())
+            {
+            origami=db.origamis.Where(os=>os.OrigamiId==id).FirstOrDefault();
+            }
+            return new OrigamiDetail(origami);
+        }
+
+        public static List<HomeItemData> GetHomeData()
+        {
+            var homeItemdatas = new List<HomeItemData>();
             using (var db = new OrigamiContext())
             {
 
                 foreach (var item in db.origamis)
                 {
-                    detail.Add(new OrigamiDetail(item));
+                    homeItemdatas.Add(new HomeItemData(item));
                 }
-                return detail;
+                return homeItemdatas;
             }
-          
+
         }
     }
 }

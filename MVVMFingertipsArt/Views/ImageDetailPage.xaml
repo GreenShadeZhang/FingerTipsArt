@@ -44,7 +44,7 @@
                     <Viewbox StretchDirection="DownOnly">
                         <Image x:Name="detailImage"
                                Stretch="None"
-                               Source="{x:Bind Pic1, Mode=OneWay}" />
+                               Source="{x:Bind MovieUrl, Mode=OneWay}" />
                     </Viewbox>
                 </DataTemplate>
             </FlipView.ItemTemplate>
@@ -55,6 +55,6 @@
               Background="{ThemeResource FlipViewBackground}" />
         <Image x:Name="previewImage"
              
-               Source="{x:Bind ViewModel.SelectedImage.(data:Pic.Pic1), Mode=OneWay}" />
+               Source="{x:Bind ViewModel.SelectedImage.(data:Pic.MovieUrl), Mode=OneWay}" />
     </Grid>
 </Page>

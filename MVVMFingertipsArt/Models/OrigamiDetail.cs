@@ -10,7 +10,7 @@ namespace MVVMFingertipsArt.Models
    public class OrigamiDetail
     {
         public int OrigamiId { get; set; }
-        public List<string> PicList { get; set; }
+        public List<Pic> PicList { get; set; }
         public string Title { get; set; }
         public string Name { get; set; }
         public string Introduce { get; set; }
@@ -20,7 +20,19 @@ namespace MVVMFingertipsArt.Models
         public int Status { get; set; }
         public OrigamiDetail(Origami origami)
         {
-
+            List<Pic> list = new List<Pic>();
+           this.OrigamiId = origami.OrigamiId;
+            string[] vs = origami.PicList.Split(",");
+            //foreach (var item in vs)
+            //{
+            //    PicList.Add(new Pic() { MovieUrl = item });
+            //}
+            for (int i = 0; i < vs.Length; i++)
+            {
+                list.Add(new Pic() { Id = i + 1, MovieUrl = vs[i] });
+            }
+            PicList = list;
+            this.Avatar = origami.Avatar;
         }
     }
 }

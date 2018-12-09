@@ -21,7 +21,7 @@ namespace MVVMFingertipsArt.ViewModels
     {
 
 
-        public GridViewDataTemplate Data { set; get; }
+        public HomeItemData Data { set; get; }
 
         private static UIElement _image;
 
@@ -31,11 +31,11 @@ namespace MVVMFingertipsArt.ViewModels
         public const string ImageGalleryAnimationOpen = "ImageGallery_AnimationOpen";
         public const string ImageGalleryAnimationClose = "ImageGallery_AnimationClose";
 
-        private Picture _source;
+        private OrigamiDetail _source=GetDbData.GetOrigamiData(1);
         private ICommand _itemSelectedCommand;
         private GridView _imagesGridView;
-        public ObservableCollection<Picture> So { get; set; }
-        public Picture Source
+        public ObservableCollection<OrigamiDetail> So { get; set; }
+        public OrigamiDetail Source
         {
             get => _source;
             set => Set(ref _source, value);
@@ -51,7 +51,7 @@ namespace MVVMFingertipsArt.ViewModels
             Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
           Int32  sampleImageId = (Int32)localSettings.Values["ID"];
            
-            Source = null;
+           // Source = null;
         }
 
         public void Initialize(GridView imagesGridView)
@@ -70,7 +70,7 @@ namespace MVVMFingertipsArt.ViewModels
                 var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation(ImageGalleryAnimationClose);
                 if (animation != null)
                 {
-                    var item = _imagesGridView.Items.FirstOrDefault(i => ((Pic)i).Id .ToString()== selectedImageId);
+                    var item = _imagesGridView.Items.FirstOrDefault(i => ((OrigamiDetail)i).OrigamiId .ToString()== selectedImageId);
                     _imagesGridView.ScrollIntoView(item);
                     await _imagesGridView.TryStartConnectedAnimationAsync(animation, item, "ItemThumbnail");
                 }
@@ -82,10 +82,10 @@ namespace MVVMFingertipsArt.ViewModels
 
         private void OnsItemSelected(ItemClickEventArgs args)
         {
-            var selected = args.ClickedItem as Pic;
+            var selected = args.ClickedItem as OrigamiDetail;
           
              _imagesGridView.PrepareConnectedAnimation(ImageGalleryAnimationOpen, selected, "ItemThumbnail");
-            ShellPage.RootFrame.Navigate(typeof(ImageDetailPage),selected.Id);
+            ShellPage.RootFrame.Navigate(typeof(ImageDetailPage),selected.OrigamiId);
         }
 
        

@@ -22,7 +22,7 @@ namespace MVVMFingertipsArt.ViewModels
         private object _selectedImage;
       //  private ObservableCollection<GridViewDataTemplate> _source;
        // private ObservableCollection<Picture> _source;
-        private Picture _source;
+        private OrigamiDetail _source;
         public object SelectedImage
         {
             get => _selectedImage;
@@ -38,7 +38,7 @@ namespace MVVMFingertipsArt.ViewModels
         //    get => _source;
         //    set => Set(ref _source, value);
         //}
-        public Picture Source
+        public OrigamiDetail Source
         {
             get => _source;
             set => Set(ref _source, value);

@@ -159,7 +159,7 @@
                                      Width="200"
                                        x:Name="ItemThumbnail"
                                    
-                                   Source="{x:Bind Pic1}">
+                                   Source="{x:Bind MovieUrl}">
                                 </Image>
                                 <!--<TextBlock Text="{x:Bind Name}"></TextBlock>-->
                             </Grid>

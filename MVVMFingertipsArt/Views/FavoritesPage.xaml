@@ -40,7 +40,7 @@
                 </DataTemplate>
             </GridView.HeaderTemplate>
             <GridView.ItemTemplate>
-                <DataTemplate x:DataType="data:GridViewDataTemplate">
+                <DataTemplate x:DataType="data:HomeItemData">
 
                     <StackPanel Margin="20"
                                 CornerRadius="40"

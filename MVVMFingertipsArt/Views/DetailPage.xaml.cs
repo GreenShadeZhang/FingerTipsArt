@@ -116,7 +116,7 @@ namespace MVVMFingertipsArt.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ShellPage.RootFrame.Navigate(typeof(PlayerPage),ViewModel.Source.Movie);
+            ShellPage.RootFrame.Navigate(typeof(PlayerPage),ViewModel.Source.MovieUrl);
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
