@@ -22,7 +22,7 @@ namespace MVVMFingertipsArt.ViewModels
         private object _selectedImage;
       //  private ObservableCollection<GridViewDataTemplate> _source;
        // private ObservableCollection<Picture> _source;
-        private OrigamiDetail _source;
+        private OrigamiDetail _source=GetDbData.GetOrigamiData(1);
         public object SelectedImage
         {
             get => _selectedImage;
@@ -50,7 +50,7 @@ namespace MVVMFingertipsArt.ViewModels
             Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
             Int32 sampleImageId = (Int32)localSettings.Values["ID"];
             
-            Source = null;
+            //Source = null;
         }
 
         public void SetImage(UIElement image) => _image = image;

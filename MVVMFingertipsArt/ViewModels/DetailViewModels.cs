@@ -82,10 +82,10 @@ namespace MVVMFingertipsArt.ViewModels
 
         private void OnsItemSelected(ItemClickEventArgs args)
         {
-            var selected = args.ClickedItem as OrigamiDetail;
+            var selected = args.ClickedItem as Pic;
           
              _imagesGridView.PrepareConnectedAnimation(ImageGalleryAnimationOpen, selected, "ItemThumbnail");
-            ShellPage.RootFrame.Navigate(typeof(ImageDetailPage),selected.OrigamiId);
+            ShellPage.RootFrame.Navigate(typeof(ImageDetailPage),selected.Id);
         }
 
        
