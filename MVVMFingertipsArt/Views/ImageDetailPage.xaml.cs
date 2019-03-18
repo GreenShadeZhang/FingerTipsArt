@@ -45,7 +45,7 @@ namespace MVVMFingertipsArt.Views
             base.OnNavigatingFrom(e);
             if (e.NavigationMode == NavigationMode.Back)
             {
-                previewImage.Visibility = Visibility.Visible;
+               // previewImage.Visibility = Visibility.Visible;
                 ViewModel.SetAnimation();
             }
         }

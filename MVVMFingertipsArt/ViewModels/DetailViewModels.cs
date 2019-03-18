@@ -26,12 +26,12 @@ namespace MVVMFingertipsArt.ViewModels
         private static UIElement _image;
 
 
-
+        public  int Id { get; set; }
         public const string ImageGallerySelectedIdKey = "ImageGallerySelectedIdKey";
         public const string ImageGalleryAnimationOpen = "ImageGallery_AnimationOpen";
         public const string ImageGalleryAnimationClose = "ImageGallery_AnimationClose";
 
-        private OrigamiDetail _source=GetDbData.GetOrigamiData(1);
+        private OrigamiDetail _source=null;
         private ICommand _itemSelectedCommand;
         private GridView _imagesGridView;
         public ObservableCollection<OrigamiDetail> So { get; set; }
@@ -50,7 +50,7 @@ namespace MVVMFingertipsArt.ViewModels
          
             Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
           Int32  sampleImageId = (Int32)localSettings.Values["ID"];
-           
+            _source = GetDbData.GetOrigamiData(sampleImageId);
            // Source = null;
         }
 
@@ -59,23 +59,25 @@ namespace MVVMFingertipsArt.ViewModels
             _imagesGridView = imagesGridView;
         }
 
-      
-      
-        public async Task LoadAnimationAsync()
+
+        public void InitializeId(int id)
         {
-          
+            Id = id;
+        }
+        public async Task LoadAnimationAsync()
+        {     
             var selectedImageId = await ApplicationData.Current.LocalSettings.ReadAsync<string>(ImageGallerySelectedIdKey);
             if (!string.IsNullOrEmpty(selectedImageId))
             {
                 var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation(ImageGalleryAnimationClose);
                 if (animation != null)
                 {
-                    var item = _imagesGridView.Items.FirstOrDefault(i => ((OrigamiDetail)i).OrigamiId .ToString()== selectedImageId);
+                    var item = _imagesGridView.Items.Where(i => ((Pic)i).Id .ToString()== selectedImageId);
                     _imagesGridView.ScrollIntoView(item);
                     await _imagesGridView.TryStartConnectedAnimationAsync(animation, item, "ItemThumbnail");
                 }
 
-                ApplicationData.Current.LocalSettings.SaveString(ImageGallerySelectedIdKey, string.Empty);
+                //ApplicationData.Current.LocalSettings.SaveString(ImageGallerySelectedIdKey, string.Empty);
             }
         }
      

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MVVMFingertipsArt.Models;
 using Windows.Storage;
-
+using Microsoft.Toolkit.Uwp.Helpers;
 namespace MVVMFingertipsArt.Services
 {
    public class GetDbData
@@ -41,8 +41,7 @@ namespace MVVMFingertipsArt.Services
         public async static void MakeSureSqliteExsit()
         {
             var dbFile = await ApplicationData.Current.LocalFolder.TryGetItemAsync("mynew.db") as StorageFile;
-            if (null == dbFile)
-
+            if (null == dbFile||SystemInformation.IsFirstRun)
             {
 
                 // first time ... copy the .db file from assets to local  folder
@@ -64,6 +63,22 @@ namespace MVVMFingertipsArt.Services
                 }
 
             }
+            else if(null!=dbFile&&SystemInformation.IsAppUpdated)
+            {
+                // first time ... copy the .db file from assets to local  folder
+
+                var localFolder = ApplicationData.Current.LocalFolder;
+
+                var originalDbFileUri = new Uri("ms-appx:///Assets/blogging.db");
+
+                var originalDbFile = await StorageFile.GetFileFromApplicationUriAsync(originalDbFileUri);
+                // var originalDbFile = await StorageFile.GetFileFromPathAsync("/Assets/mynew.db");
+                if (null != originalDbFile)
+                {
+                    dbFile = await originalDbFile.CopyAsync(localFolder, "mynew.db", NameCollisionOption.ReplaceExisting);
+                }
+            }
+
 
         }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVVMFingertipsArt.Views;
+using System;
 using System.Collections.Generic;
 using Windows.Foundation.Metadata;
 using Windows.System;
@@ -7,23 +8,6 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 namespace MVVMFingertipsArt.Helpers
 {
-    /// <summary>
-    /// RootFrameNavigationHelper registers for standard mouse and keyboard
-    /// shortcuts used to go back and forward. There should be only one
-    /// RootFrameNavigationHelper per view, and it should be associated with the
-    /// root frame.
-    /// </summary>
-    /// <example>
-    /// To make use of RootFrameNavigationHelper, create an instance of the
-    /// RootNavigationHelper such as in the constructor of your root page.
-    /// <code>
-    ///     public MyRootPage()
-    ///     {
-    ///         this.InitializeComponent();
-    ///         this.rootNavigationHelper = new RootNavigationHelper(MyFrame);
-    ///     }
-    /// </code>
-    /// </example>
     [Windows.Foundation.Metadata.WebHostHidden]
     public class RootFrameNavigationHelper
     {
@@ -38,12 +22,11 @@ namespace MVVMFingertipsArt.Helpers
         public RootFrameNavigationHelper(Frame rootFrame, Windows.UI.Xaml.Controls.NavigationView currentNavView)
         {
             this.Frame = rootFrame;
-            this.Frame.Navigated += (s, e) =>
-            {
-                // Update the Back button whenever a navigation occurs.
-                UpdateBackButton();
-            };
             this.CurrentNavView = currentNavView;
+            this.Frame.Navigated += (s, e) =>
+            {        
+                        UpdateBackButton();
+            };
             // Handle keyboard and mouse navigation requests
             this.systemNavigationManager = SystemNavigationManager.GetForCurrentView();
             systemNavigationManager.BackRequested += SystemNavigationManager_BackRequested;
@@ -59,15 +42,15 @@ namespace MVVMFingertipsArt.Helpers
             Window.Current.CoreWindow.PointerPressed +=
                 this.CoreWindow_PointerPressed;
         }
-        private void NavView_BackRequested(Windows.UI.Xaml.Controls.NavigationView sender, Windows.UI.Xaml.Controls.NavigationViewBackRequestedEventArgs args)
+        private void NavView_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
         {
             TryGoBack();
         }
         private bool TryGoBack()
         {
             // don't go back if the nav pane is overlayed
-            if (this.CurrentNavView.IsPaneOpen && (this.CurrentNavView.DisplayMode == Windows.UI.Xaml.Controls.NavigationViewDisplayMode.Compact ||
-                this.CurrentNavView.DisplayMode == Windows.UI.Xaml.Controls.NavigationViewDisplayMode.Minimal))
+            if (this.CurrentNavView.IsPaneOpen && (this.CurrentNavView.DisplayMode == NavigationViewDisplayMode.Compact ||
+                this.CurrentNavView.DisplayMode == NavigationViewDisplayMode.Minimal))
             {
                 return false;
             }

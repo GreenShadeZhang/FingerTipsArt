@@ -6,7 +6,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
       xmlns:extensions="using:Microsoft.Toolkit.Uwp.UI.Extensions"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Loaded="Page_Loaded">
 
     <Grid >
         <VisualStateManager.VisualStateGroups>
@@ -42,27 +43,18 @@
                        Fill="#BFCFB5C0">               
             </Rectangle>-->
             <Rectangle x:Name="DarkOverlay"
-                       Opacity="0.7"
-                       Fill="Azure" />
+                       Opacity="0.6"
+                       Fill="{ThemeResource SystemControlAcrylicWindowBrush}" />
         </Grid>
         <!-- Style="{StaticResource NavigationViewStyleNav}"-->
-        <NavigationView  x:Name="NavShell"
+        <NavigationView Style="{StaticResource ShellNavigationViewStyle}"  x:Name="NavShell"
                         ItemInvoked="NavShell_ItemInvoked" >
             <NavigationView.MenuItems>
-                <NavigationViewItem Icon="Home" Content="Home" Tag="HomePage" />
-                <NavigationViewItem Icon="Bookmarks" Content="Book" Tag="Favorites" />
-                <!--<NavigationViewItem Content="历史天气" Tag="History" />-->
-                <NavigationViewItem Icon="Add" Content="bing" Tag="BingPic" />
+                <NavigationViewItem  x:Uid="Home" Tag="HomePage"/>
+                <NavigationViewItem  x:Uid="Bing" Tag="BingPic" />
             </NavigationView.MenuItems>
             <Grid>
                 <Frame x:Name="ContentFrame" Navigated="ContentFrame_Navigated">
-                    <Frame.ContentTransitions>
-                        <TransitionCollection>
-                            <NavigationThemeTransition>
-                                <EntranceNavigationTransitionInfo />
-                            </NavigationThemeTransition>
-                        </TransitionCollection>
-                    </Frame.ContentTransitions>
                 </Frame>
             </Grid>
         </NavigationView>

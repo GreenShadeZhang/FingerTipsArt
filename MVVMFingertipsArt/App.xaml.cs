@@ -28,10 +28,11 @@ namespace MVVMFingertipsArt
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-            using (var db = new OrigamiContext())
-            {
-                db.Database.Migrate();
-            }
+            GetDbData.MakeSureSqliteExsit();
+            //using (var db = new OrigamiContext())
+            //{
+            //    db.Database.Migrate();
+            //}
         }
 
         /// <summary>

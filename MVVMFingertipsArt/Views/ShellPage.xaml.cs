@@ -28,30 +28,6 @@ namespace MVVMFingertipsArt.Views
         private void OnBackgroundImageOpened(object sender, RoutedEventArgs e) =>
         BackgroundImage.Visibility = Visibility.Visible;
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            ContentFrame.Navigate(typeof(HomePage));
-            base.OnNavigatedTo(e);
-        }
-        private void ContentFrame_Navigated(object sender, Windows.UI.Xaml.Navigation.NavigationEventArgs e)
-        {
-            switch (e.SourcePageType)
-            {
-                case Type c when e.SourcePageType == typeof(HomePage):
-                    ((NavigationViewItem)NavShell.MenuItems[0]).IsSelected = true;
-                    break;
-                    //case Type c when e.SourcePageType == typeof(MasterDetailPage):
-                    //    ((NavigationViewItem)NavView.MenuItems[1]).IsSelected = true;
-                    //    break;
-                    //case Type c when e.SourcePageType == typeof(MasterDetailPage2):
-                    //    ((NavigationViewItem)NavView.MenuItems[2]).IsSelected = true;
-                    //    break;
-                    //case Type c when e.SourcePageType == typeof(MainPage):
-                    //    ((NavigationViewItem)NavView.MenuItems[3]).IsSelected = true;
-                    //    break;
-
-            }
-        }
 
         private void NavShell_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
@@ -68,20 +44,41 @@ namespace MVVMFingertipsArt.Views
                 {
                     ContentFrame.Navigate(typeof(HomePage), null, new DrillInNavigationTransitionInfo());
                 }
-                else if (navItemTag == "Favorites")
+                //else if (navItemTag == "Favorites")
+                //{
+                //    ContentFrame.Navigate(typeof(FavoritesPage), null, new DrillInNavigationTransitionInfo());
+                //}
+                else if (navItemTag == "BingPic")
                 {
-                    ContentFrame.Navigate(typeof(FavoritesPage), null, new DrillInNavigationTransitionInfo());
+                    ContentFrame.Navigate(typeof(BingWallPaper), null, new DrillInNavigationTransitionInfo());
                 }
-                //else if (navItemTag == "BingPic")
-                //{
-                //    ContentFrame.Navigate(typeof(BingWallpaperPage), null, new DrillInNavigationTransitionInfo());
-                //}
-                //else if(navItemTag== "History")
-                //{
-
-                //}
-                // ContentFrame.Navigate(navItemTag, args.RecommendedNavigationTransitionInfo);
             }
+        }
+
+
+        private void ContentFrame_Navigated(object sender, NavigationEventArgs e)
+        {
+            switch (e.SourcePageType)
+            {
+                case Type c when e.SourcePageType == typeof(HomePage):
+                    ((NavigationViewItem)NavShell.MenuItems[0]).IsSelected = true;
+                    break;
+                case Type c when e.SourcePageType == typeof(BingWallPaper):
+                    ((NavigationViewItem)NavShell.MenuItems[1]).IsSelected = true;
+                    break;
+                    //case Type c when e.SourcePageType == typeof(MasterDetailPage2):
+                    //    ((NavigationViewItem)NavView.MenuItems[2]).IsSelected = true;
+                    //    break;
+                    //case Type c when e.SourcePageType == typeof(MainPage):
+                    //    ((NavigationViewItem)NavView.MenuItems[3]).IsSelected = true;
+                    //    break;
+
+            }
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            ContentFrame.Navigate(typeof(HomePage));
         }
     }
 }

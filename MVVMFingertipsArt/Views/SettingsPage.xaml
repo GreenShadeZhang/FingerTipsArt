@@ -57,7 +57,8 @@
 
             <TextBlock
                 x:Uid="Settings_About"
-                Style="{StaticResource SubtitleTextBlockStyle}" />
+                Style="{StaticResource SubtitleTextBlockStyle}"
+                TextWrapping="Wrap"/>
 
             <StackPanel Margin="{StaticResource EightTopMargin}">
                 <TextBlock

@@ -23,16 +23,15 @@ namespace MVVMFingertipsArt.Models
             List<Pic> list = new List<Pic>();
            this.OrigamiId = origami.OrigamiId;
             string[] vs = origami.PicList.Split(",");
-            //foreach (var item in vs)
-            //{
-            //    PicList.Add(new Pic() { MovieUrl = item });
-            //}
             for (int i = 0; i < vs.Length; i++)
             {
                 list.Add(new Pic() { Id = i + 1, MovieUrl = vs[i] });
             }
             PicList = list;
             this.Avatar = origami.Avatar;
+            this.MovieUrl = origami.MovieUrl;
+            this.Title = origami.Title;
+            this.Introduce = origami.Introduce;
         }
     }
 }

@@ -42,9 +42,14 @@
             <FlipView.ItemTemplate>
                 <DataTemplate x:DataType="data:Pic">
                     <Viewbox StretchDirection="DownOnly">
-                        <Image x:Name="detailImage"
+                        <StackPanel>
+                            <Image x:Name="detailImage"
                                Stretch="None"
                                Source="{x:Bind MovieUrl, Mode=OneWay}" />
+                            <TextBlock Text="{x:Bind Id,Mode=OneWay}"
+                                       HorizontalAlignment="Center"
+                                       FontSize="36"/>
+                        </StackPanel>
                     </Viewbox>
                 </DataTemplate>
             </FlipView.ItemTemplate>
@@ -54,7 +59,7 @@
         <Grid x:Name="shapeGrid"           
               Background="{ThemeResource FlipViewBackground}" />
         <Image x:Name="previewImage"
-             
+               Visibility="Collapsed"
                Source="{x:Bind ViewModel.SelectedImage.(data:Pic.MovieUrl), Mode=OneWay}" />
     </Grid>
 </Page>

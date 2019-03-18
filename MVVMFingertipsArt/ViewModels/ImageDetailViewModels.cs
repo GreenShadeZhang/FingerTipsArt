@@ -20,9 +20,7 @@ namespace MVVMFingertipsArt.ViewModels
 
         private static UIElement _image;
         private object _selectedImage;
-      //  private ObservableCollection<GridViewDataTemplate> _source;
-       // private ObservableCollection<Picture> _source;
-        private OrigamiDetail _source=GetDbData.GetOrigamiData(1);
+        private OrigamiDetail _source=null;
         public object SelectedImage
         {
             get => _selectedImage;
@@ -31,26 +29,17 @@ namespace MVVMFingertipsArt.ViewModels
                 Set(ref _selectedImage, value);
               ApplicationData.Current.LocalSettings.SaveString(DetailViewModels.ImageGallerySelectedIdKey, ((Pic)SelectedImage).Id.ToString());
             }
-        }
-
-        //public ObservableCollection<Picture> Source
-        //{
-        //    get => _source;
-        //    set => Set(ref _source, value);
-        //}
+        }     
         public OrigamiDetail Source
         {
             get => _source;
             set => Set(ref _source, value);
         }
         public ImageDetailViewModels()
-        {
-            // TODO WTS: Replace this with your actual data
-           
+        {      
             Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
             Int32 sampleImageId = (Int32)localSettings.Values["ID"];
-            
-            //Source = null;
+            _source = GetDbData.GetOrigamiData(sampleImageId);
         }
 
         public void SetImage(UIElement image) => _image = image;

@@ -82,7 +82,7 @@ namespace MVVMFingertipsArt.ViewModels
             localSettings.Values["ID"] = gridView.OrigamiId;
             //  ApplicationData.Current.LocalSettings.SaveString("ID", gridView.Id.ToString());
               var animation = _imagesGridView.PrepareConnectedAnimation("ca1", gridView, "av");
-            ShellPage.RootFrame.Navigate(typeof(DetailPage),gridView.OrigamiId);
+            ShellPage.RootFrame.Navigate(typeof(DetailPage));
        
         }
 

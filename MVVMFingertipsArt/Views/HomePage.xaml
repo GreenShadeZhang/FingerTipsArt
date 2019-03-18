@@ -9,19 +9,33 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
  
     mc:Ignorable="d">
-
-    <controls:AdaptiveGridView ItemsSource="{x:Bind ViewModel.Data ,Mode=OneWay}"
+    <Grid >
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="800" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="HomeGrid.Margin" Value="0" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups >
+        <controls:AdaptiveGridView ItemsSource="{x:Bind ViewModel.Data ,Mode=OneWay}"
                               x:Name="HomeGrid"
-                                  DesiredWidth="240"
-                                       ItemHeight="300"
+                                   Margin="0,80,0,0"
+                              OneRowModeEnabled="False"                                
+                              ItemContainerStyle="{StaticResource HomeGridViewItemRevealStyle}"
                               IsItemClickEnabled="True"
+                              HorizontalAlignment="Center"
                               ContainerContentChanging="HomeGrid_ContainerContentChanging"                         
                               ItemClick="{x:Bind ViewModel.GridView_ItemClick}">
         <controls:AdaptiveGridView.HeaderTemplate>
             <DataTemplate>
                 <Image x:Name="Logo"
                                    VerticalAlignment="Top"
-                                   Margin="0,40,0,0"
+                                   Margin="0,0,0,0"
                                    HorizontalAlignment="Left"
                                    Width="500">
                     <Image.Source>
@@ -32,14 +46,13 @@
         </controls:AdaptiveGridView.HeaderTemplate>
         <controls:AdaptiveGridView.ItemTemplate>
             <DataTemplate x:DataType="data:HomeItemData">
-                <Grid Background="{StaticResource InAppBackgroundAcrylicBrush}">
+                <Grid >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Image x:Name="av"
-                           Width="180"
-                           Margin="20,20,20,0"
+                           Width="180"                   
                            Grid.Row="0"
                            Source="{x:Bind Avatar}">
                     </Image>
@@ -53,4 +66,5 @@
             </DataTemplate>
         </controls:AdaptiveGridView.ItemTemplate>
     </controls:AdaptiveGridView>
+        </Grid>
 </Page>
