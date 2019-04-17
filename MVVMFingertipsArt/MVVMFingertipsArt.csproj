@@ -122,8 +122,10 @@
     <Compile Include="Helpers\TitleBarHelper.cs" />
     <Compile Include="Models\HomeItemData.cs" />
     <Compile Include="Models\OrigamiDetail.cs" />
+    <Compile Include="Models\PageList.cs" />
     <Compile Include="Models\Pic.cs" />
     <Compile Include="Services\GetDbData.cs" />
+    <Compile Include="Services\ItemsToShow.cs" />
     <Compile Include="Services\ThemeSelectorService.cs" />
     <Compile Include="ViewModels\DetailViewModels.cs" />
     <Compile Include="ViewModels\FavoritesViewModel.cs" />

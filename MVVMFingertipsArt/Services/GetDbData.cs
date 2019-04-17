@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using MVVMFingertipsArt.Models;
 using Windows.Storage;
 using Microsoft.Toolkit.Uwp.Helpers;
+using System.Collections.ObjectModel;
+
 namespace MVVMFingertipsArt.Services
 {
    public class GetDbData
@@ -34,6 +36,31 @@ namespace MVVMFingertipsArt.Services
                 }
                 return homeItemdatas;
             }
+
+        }
+
+
+
+        public static IPageList<Origami> GetHomeDataListAsync(int pageIndex = 1, int pageSize = 9)
+        {
+           
+            using (var db = new OrigamiContext())
+            {
+
+                //List<Blog> blogs = await _context.Blogs.ToListAsync();
+                var blogs = db.origamis.OrderByDescending(c => c.Name).Skip((pageIndex - 1) * pageSize).Take(pageSize).AsQueryable();
+                int count =  db.origamis.Count();
+                IPageList<Origami> blogList = new PageList<Origami>(blogs, pageIndex, pageSize, count);
+                //var homeItemdatas = new ObservableCollection<HomeItemData>();
+                // foreach (var item in db.origamis)
+                // {
+                //     homeItemdatas.Add(new HomeItemData(item));
+                // }
+                //return homeItemdatas;
+                return blogList;
+            }
+
+           
 
         }
 

@@ -28,9 +28,9 @@ namespace MVVMFingertipsArt.ViewModels
         {
             _imagesGridView = imagesGridView;
         }
-        private List<HomeItemData> _gridViewDataTemplates = GetDbData.GetHomeData();
-
-        public List<HomeItemData> Data
+        //private List<HomeItemData> _gridViewDataTemplates = GetDbData.GetHomeData();
+        private ObservableCollection<HomeItemData> _gridViewDataTemplates = new ItemsToShow();
+        public ObservableCollection<HomeItemData> Data
         {
             get
             {

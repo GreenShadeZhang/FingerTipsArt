@@ -10,7 +10,8 @@
  
     mc:Ignorable="d">
     <Grid >
-        <VisualStateManager.VisualStateGroups>
+        <!--ContainerContentChanging="HomeGrid_ContainerContentChanging"  -->
+            <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState>
                     <VisualState.StateTriggers>
@@ -28,8 +29,7 @@
                               OneRowModeEnabled="False"                                
                               ItemContainerStyle="{StaticResource HomeGridViewItemRevealStyle}"
                               IsItemClickEnabled="True"
-                              HorizontalAlignment="Center"
-                              ContainerContentChanging="HomeGrid_ContainerContentChanging"                         
+                              HorizontalAlignment="Center"                                            
                               ItemClick="{x:Bind ViewModel.GridView_ItemClick}">
         <controls:AdaptiveGridView.HeaderTemplate>
             <DataTemplate>
@@ -66,5 +66,6 @@
             </DataTemplate>
         </controls:AdaptiveGridView.ItemTemplate>
     </controls:AdaptiveGridView>
-        </Grid>
+        <ProgressRing Width="200" Height="200" x:Name="HomeRing"/>
+    </Grid>
 </Page>
