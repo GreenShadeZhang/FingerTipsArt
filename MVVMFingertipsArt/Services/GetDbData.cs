@@ -12,14 +12,14 @@ using System.Collections.ObjectModel;
 
 namespace MVVMFingertipsArt.Services
 {
-   public class GetDbData
+    public class GetDbData
     {
-        public static  OrigamiDetail GetOrigamiData(int id)
+        public static OrigamiDetail GetOrigamiData(int id)
         {
             Origami origami = null;
             using (var db = new OrigamiContext())
             {
-            origami=db.origamis.Where(os=>os.OrigamiId==id).FirstOrDefault();
+                origami = db.origamis.Where(os => os.OrigamiId == id).FirstOrDefault();
             }
             return new OrigamiDetail(origami);
         }
@@ -43,32 +43,23 @@ namespace MVVMFingertipsArt.Services
 
         public static IPageList<Origami> GetHomeDataListAsync(int pageIndex = 1, int pageSize = 9)
         {
-           
+
             using (var db = new OrigamiContext())
             {
 
                 //List<Blog> blogs = await _context.Blogs.ToListAsync();
                 var blogs = db.origamis.OrderByDescending(c => c.Name).Skip((pageIndex - 1) * pageSize).Take(pageSize).AsQueryable();
-                int count =  db.origamis.Count();
+                int count = db.origamis.Count();
                 IPageList<Origami> blogList = new PageList<Origami>(blogs, pageIndex, pageSize, count);
-                //var homeItemdatas = new ObservableCollection<HomeItemData>();
-                // foreach (var item in db.origamis)
-                // {
-                //     homeItemdatas.Add(new HomeItemData(item));
-                // }
-                //return homeItemdatas;
                 return blogList;
             }
-
-           
-
         }
 
 
-        public async static void MakeSureSqliteExsit()
+        public async static Task MakeSureSqliteExsitAsync()
         {
             var dbFile = await ApplicationData.Current.LocalFolder.TryGetItemAsync("mynew.db") as StorageFile;
-            if (null == dbFile||SystemInformation.IsFirstRun)
+            if (null == dbFile || SystemInformation.IsFirstRun)
             {
 
                 // first time ... copy the .db file from assets to local  folder
@@ -82,15 +73,13 @@ namespace MVVMFingertipsArt.Services
 
 
                 if (null != originalDbFile)
-
                 {
 
                     dbFile = await originalDbFile.CopyAsync(localFolder, "mynew.db", NameCollisionOption.ReplaceExisting);
 
                 }
-
             }
-            else if(null!=dbFile&&SystemInformation.IsAppUpdated)
+            else if (null != dbFile && SystemInformation.IsAppUpdated)
             {
                 // first time ... copy the .db file from assets to local  folder
 
@@ -105,9 +94,6 @@ namespace MVVMFingertipsArt.Services
                     dbFile = await originalDbFile.CopyAsync(localFolder, "mynew.db", NameCollisionOption.ReplaceExisting);
                 }
             }
-
-
         }
-
     }
 }

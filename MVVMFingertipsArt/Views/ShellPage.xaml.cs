@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using MVVMFingertipsArt.Helpers;
 using MVVMFingertipsArt.Services;
 using MVVMFingertipsArt.ViewModels;
@@ -25,8 +26,8 @@ namespace MVVMFingertipsArt.Views
             _navHelper = new RootFrameNavigationHelper(ContentFrame, NavShell);
         }
 
-        private void OnBackgroundImageOpened(object sender, RoutedEventArgs e) =>
-        BackgroundImage.Visibility = Visibility.Visible;
+        //private void OnBackgroundImageOpened(object sender, RoutedEventArgs e) =>
+        //BackgroundImage.Visibility = Visibility.Visible;
 
 
         private void NavShell_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
@@ -76,8 +77,9 @@ namespace MVVMFingertipsArt.Views
             }
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            await GetDbData.MakeSureSqliteExsitAsync();
             ContentFrame.Navigate(typeof(HomePage));
         }
     }

@@ -99,7 +99,7 @@
       <Version>6.1.9</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
-      <Version>5.0.0</Version>
+      <Version>5.1.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Xaml.Behaviors.Uwp.Managed">
       <Version>2.0.0</Version>
@@ -108,9 +108,6 @@
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.1</Version>
     </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <PRIResource Include="Strings\en-us\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\EnumToBooleanConverter.cs" />
@@ -124,9 +121,12 @@
     <Compile Include="Models\OrigamiDetail.cs" />
     <Compile Include="Models\PageList.cs" />
     <Compile Include="Models\Pic.cs" />
+    <Compile Include="Models\WallPapersData.cs" />
+    <Compile Include="Models\WallpapersDetail.cs" />
     <Compile Include="Services\GetDbData.cs" />
     <Compile Include="Services\ItemsToShow.cs" />
     <Compile Include="Services\ThemeSelectorService.cs" />
+    <Compile Include="Services\WallpaperService.cs" />
     <Compile Include="ViewModels\DetailViewModels.cs" />
     <Compile Include="ViewModels\FavoritesViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
@@ -199,6 +199,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\Dark.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Light.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\BingWallPaper.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -247,16 +255,19 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\1.mp4" />
-    <Content Include="Assets\b.jpg" />
-    <Content Include="Assets\3.jpg" />
+    <Content Include="Assets\a2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\a3.jpg" />
     <Content Include="Assets\BadgeLogo.scale-100.png" />
     <Content Include="Assets\BadgeLogo.scale-125.png" />
     <Content Include="Assets\BadgeLogo.scale-150.png" />
     <Content Include="Assets\BadgeLogo.scale-200.png" />
     <Content Include="Assets\BadgeLogo.scale-400.png" />
-    <Content Include="Assets\BuildCast34.svg" />
+    <Content Include="Assets\BuildCasfft.svg" />
     <Content Include="Assets\BuildCastDarkTheme.svg" />
     <Content Include="Assets\a.jpg" />
+    <Content Include="Assets\Default.jpg" />
     <Content Include="Assets\IMG_1558.JPG" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-125.png" />
@@ -310,6 +321,7 @@
     <Content Include="Assets\Wide310x150Logo.scale-125.png" />
     <Content Include="Assets\Wide310x150Logo.scale-150.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
+    <Content Include="Assets\BuildCast345.svg" />
     <Content Include="Assets\BuildCast.svg" />
     <Content Include="Properties\Default.rd.xml">
       <SubType>Designer</SubType>
@@ -325,6 +337,7 @@
     <None Include=".editorconfig" />
     <Content Include="Assets\blogging.db" />
     <None Include="MVVMFingertipsArt_TemporaryKey.pfx" />
+    <PRIResource Include="Strings\en-us\Resources.resw" />
     <PRIResource Include="Strings\zh-cn\Resources.resw" />
   </ItemGroup>
   <ItemGroup>

@@ -28,7 +28,6 @@ namespace MVVMFingertipsArt
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-            GetDbData.MakeSureSqliteExsit();
             //using (var db = new OrigamiContext())
             //{
             //    db.Database.Migrate();
@@ -70,11 +69,12 @@ namespace MVVMFingertipsArt
                     // 当导航堆栈尚未还原时，导航到第一页，
                     // 并通过将所需信息作为导航参数传入来配置
                     // 参数
+                    await InitializeAsync();
+                    await StartupAsync();
                     rootFrame.Navigate(typeof(Views.ShellPage), e.Arguments);
                 }
-                // 确保当前窗口处于活动状态
-                await InitializeAsync();
-                await StartupAsync();
+                 //确保当前窗口处于活动状态
+          
                 Window.Current.Activate();
             }
         }

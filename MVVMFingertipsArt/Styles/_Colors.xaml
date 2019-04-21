@@ -1,5 +1,6 @@
 ﻿<ResourceDictionary
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">    
     <SolidColorBrush x:Key="ThemeControlForegroundBaseHighBrush" Color="{ThemeResource SystemBaseHighColor}"></SolidColorBrush>
     <FontFamily x:Key="ContentControlThemeFontFamily">XamlAutoFontFamily</FontFamily>
@@ -461,7 +462,7 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            <StackPanel x:Name="TopNavArea" Background="{ThemeResource SystemControlAcrylicWindowBrush}" HorizontalAlignment="Stretch" Grid.Row="0" VerticalAlignment="Top" Canvas.ZIndex="1">
+                            <StackPanel x:Name="TopNavArea" Background="{ThemeResource CustomAcrylicBackgroundBrush}" HorizontalAlignment="Stretch" Grid.Row="0" VerticalAlignment="Top" Canvas.ZIndex="1">
                                 <Grid x:Name="TopNavTopPadding" Height="{Binding TemplateSettings.TopPadding, RelativeSource={RelativeSource Mode=TemplatedParent}}" Visibility="{Binding TemplateSettings.TopPaneVisibility, RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
                                 <Grid x:Name="TopNavGrid" Height="{ThemeResource NavigationViewTopPaneHeight}" Visibility="{Binding TemplateSettings.TopPaneVisibility, RelativeSource={RelativeSource Mode=TemplatedParent}}">
                                     <Grid.ColumnDefinitions>
@@ -674,4 +675,206 @@
     </Style>
 
     <Style TargetType="GridViewItem" BasedOn="{StaticResource HomeGridViewItemRevealStyle}" />
+
+
+
+
+
+
+    <Style x:Key="MSEdgeNotificationTemplate_NoDismissButton" TargetType="controls:InAppNotification">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="State">
+                                <VisualState x:Name="Collapsed">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="RootGrid"
+                                                             Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                                            <EasingDoubleKeyFrame controls:InAppNotification.KeyFrameDuration="{Binding AnimationDuration, RelativeSource={RelativeSource TemplatedParent}}"
+                                                      Value="{Binding HorizontalOffset, RelativeSource={RelativeSource TemplatedParent}}" />
+                                        </DoubleAnimationUsingKeyFrames>
+
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="RootGrid"
+                                                             Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                                            <EasingDoubleKeyFrame controls:InAppNotification.KeyFrameDuration="{Binding AnimationDuration, RelativeSource={RelativeSource TemplatedParent}}"
+                                                      Value="{Binding VerticalOffset, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                        </DoubleAnimationUsingKeyFrames>
+
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid"
+                                                             Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                            <DiscreteObjectKeyFrame controls:InAppNotification.KeyFrameDuration="{Binding AnimationDuration, RelativeSource={RelativeSource TemplatedParent}}">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Collapsed</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+
+                                <VisualState x:Name="Visible">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="RootGrid"
+                                                             Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="{Binding HorizontalOffset, RelativeSource={RelativeSource TemplatedParent}}" />
+                                            <EasingDoubleKeyFrame controls:InAppNotification.KeyFrameDuration="{Binding AnimationDuration, RelativeSource={RelativeSource TemplatedParent}}" Value="0" />
+                                        </DoubleAnimationUsingKeyFrames>
+
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="RootGrid"
+                                                             Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="{Binding VerticalOffset, RelativeSource={RelativeSource TemplatedParent}}" />
+                                            <EasingDoubleKeyFrame controls:InAppNotification.KeyFrameDuration="{Binding AnimationDuration, RelativeSource={RelativeSource TemplatedParent}}" Value="0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid x:Name="RootGrid"
+                              CornerRadius="12"
+                            RenderTransformOrigin="{TemplateBinding RenderTransformOrigin}"
+                            Margin="{TemplateBinding Margin}"
+                            Padding="{TemplateBinding Padding}"
+                            MaxWidth="{TemplateBinding MaxWidth}"
+                            Visibility="{TemplateBinding Visibility}"
+                            Background="{ThemeResource CustomAcrylicBackgroundBrush}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                            <Grid.RenderTransform>
+                                <CompositeTransform />
+                            </Grid.RenderTransform>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                          HorizontalContentAlignment="Stretch"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          VerticalContentAlignment="Center"
+                                          TextWrapping="WrapWholeWords" />
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+
+
+
+
+    <Style TargetType="GridViewItem" x:Key="MyGridViewItemRevealStyle">
+        <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
+        <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}" />
+        <Setter Property="Background" Value="{ThemeResource GridViewItemBackground}" />
+        <Setter Property="Foreground" Value="{ThemeResource GridViewItemForeground}" />
+        <Setter Property="TabNavigation" Value="Local" />
+        <Setter Property="IsHoldingEnabled" Value="True" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Margin" Value="0,0,4,4" />
+        <Setter Property="MinWidth" Value="{ThemeResource GridViewItemMinWidth}" />
+        <Setter Property="MinHeight" Value="{ThemeResource GridViewItemMinHeight}" />
+        <Setter Property="AllowDrop" Value="False" />
+        <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}" />
+        <Setter Property="FocusVisualMargin" Value="-2" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="GridViewItem">
+                    <ListViewItemPresenter ContentTransitions="{TemplateBinding ContentTransitions}"
+                        x:Name="Root"
+                        Margin="12"
+                        Control.IsTemplateFocusTarget="True"
+                        FocusVisualMargin="{TemplateBinding FocusVisualMargin}"
+                        SelectionCheckMarkVisualEnabled="{ThemeResource GridViewItemSelectionCheckMarkVisualEnabled}"
+                        CheckBrush="{ThemeResource GridViewItemCheckBrush}"
+                        CheckBoxBrush="{ThemeResource GridViewItemCheckBoxBrush}"
+                        DragBackground="{ThemeResource GridViewItemDragBackground}"
+                        DragForeground="{ThemeResource GridViewItemDragForeground}"
+                        FocusBorderBrush="{ThemeResource GridViewItemFocusBorderBrush}"
+                        FocusSecondaryBorderBrush="{ThemeResource GridViewItemFocusSecondaryBorderBrush}"
+                        PlaceholderBackground="{ThemeResource GridViewItemPlaceholderBackground}"
+                        PointerOverBackground="{ThemeResource GridViewItemBackgroundPointerOver}"
+                        PointerOverForeground="{ThemeResource GridViewItemForegroundPointerOver}"
+                        SelectedBackground="{ThemeResource GridViewItemBackgroundSelected}"
+                        SelectedForeground="{ThemeResource GridViewItemForegroundSelected}"
+                        SelectedPointerOverBackground="{ThemeResource GridViewItemBackgroundSelectedPointerOver}"
+                        PressedBackground="{ThemeResource GridViewItemBackgroundPressed}"
+                        SelectedPressedBackground="{ThemeResource GridViewItemBackgroundSelectedPressed}"
+                        DisabledOpacity="{ThemeResource ListViewItemDisabledThemeOpacity}"
+                        DragOpacity="{ThemeResource ListViewItemDragThemeOpacity}"
+                        ReorderHintOffset="{ThemeResource GridViewItemReorderHintThemeOffset}"
+                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                        ContentMargin="{TemplateBinding Padding}"
+                        CheckMode="{ThemeResource GridViewItemCheckMode}"
+                        RevealBackground="{ThemeResource GridViewItemRevealBackground}"
+                        RevealBorderThickness="{ThemeResource GridViewItemRevealBorderThemeThickness}"
+                        RevealBorderBrush="{ThemeResource GridViewItemRevealBorderBrush}"
+                                           CornerRadius="16">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="Selected" />
+
+                                <VisualState x:Name="PointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Target="Root.(RevealBrush.State)" Value="PointerOver" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState x:Name="PointerOverSelected">
+                                    <VisualState.Setters>
+                                        <Setter Target="Root.(RevealBrush.State)" Value="PointerOver" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="PointerOverPressed">
+                                    <VisualState.Setters>
+                                        <Setter Target="Root.(RevealBrush.State)" Value="Pressed" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState x:Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Target="Root.(RevealBrush.State)" Value="Pressed" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState x:Name="PressedSelected">
+                                    <VisualState.Setters>
+                                        <Setter Target="Root.(RevealBrush.State)" Value="Pressed" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                            </VisualStateGroup>
+
+                            <VisualStateGroup x:Name="DisabledStates">
+                                <VisualState x:Name="Enabled" />
+
+                                <VisualState x:Name="Disabled">
+                                    <VisualState.Setters>
+                                        <Setter Target="Root.RevealBorderThickness" Value="0" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                            </VisualStateGroup>
+
+                        </VisualStateManager.VisualStateGroups>
+                    </ListViewItemPresenter>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

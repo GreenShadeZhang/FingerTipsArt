@@ -30,6 +30,7 @@ namespace MVVMFingertipsArt.Views
         }
         public static HomePage Blank { get { return _blank; } }
         public ProgressRing MyProperty { get { return this.HomeRing; } }
+
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);

@@ -5,11 +5,12 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
       xmlns:extensions="using:Microsoft.Toolkit.Uwp.UI.Extensions"
     mc:Ignorable="d"
     Loaded="Page_Loaded">
 
-    <Grid >
+    <Grid Background="{ThemeResource CustomAcrylicBackgroundBrush}">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState>
@@ -23,7 +24,7 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups >
         <Grid x:Name="BackgroundPanel">
-            <Image x:Name="BackgroundImage"
+            <!--<Image x:Name="BackgroundImage"
                    extensions:VisualExtensions.NormalizedCenterPoint="0.5,0.5,0"
                    ImageOpened="OnBackgroundImageOpened"
                    Source="ms-appx:///Assets/IMG_1558.JPG"
@@ -37,14 +38,14 @@
                                                  To="1"
                                                  Duration="0:0:2" />
                 </animations:Implicit.ShowAnimations>
-            </Image>
+            </Image>-->
             <!--<Rectangle x:Name="TintShade"
                        Opacity="0.1"
                        Fill="#BFCFB5C0">               
             </Rectangle>-->
-            <Rectangle x:Name="DarkOverlay"
+            <!--<Rectangle x:Name="DarkOverlay"
                        Opacity="0.6"
-                       Fill="{ThemeResource SystemControlAcrylicWindowBrush}" />
+                       Fill="{ThemeResource SystemControlAcrylicWindowBrush}" />-->
         </Grid>
         <!-- Style="{StaticResource NavigationViewStyleNav}"-->
         <NavigationView Style="{StaticResource ShellNavigationViewStyle}"  x:Name="NavShell"

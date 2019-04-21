@@ -39,7 +39,15 @@ namespace MVVMFingertipsArt.Services
             SetupTitlebar();
         }
 
+        public static string GetLogoSource()
+        {
+            if (TrueTheme() == ElementTheme.Dark)
+            {
+                return "ms-appx:///Assets/BuildCastDarkTheme.svg";
+            }
 
+            return "ms-appx:///Assets/BuildCast.svg";
+        }
 
 
 

@@ -42,6 +42,22 @@ namespace MVVMFingertipsArt.ViewModels
             }
         }
 
+        //public string LogoSource
+        //{
+        //    get
+        //    {
+        //        return ThemeSelectorService.GetLogoSource();
+        //    }
+        //}
+
+
+        private string _logoSource = ThemeSelectorService.GetLogoSource();
+        public string LogoSource
+        {
+            get { return _logoSource; }
+
+            set { Set(ref _logoSource, value); }
+        }
 
         private ObservableCollection<HomeItemData> _gridViewDataTemplates2 = null;
 

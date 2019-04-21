@@ -162,7 +162,7 @@
     <comment>Privacy Statement link content for Settings</comment>
   </data>
   <data name="Settings_PrivacyTermsLink.NavigateUri" xml:space="preserve">
-    <value>https://YourPrivacyUrlGoesHere/</value>
+    <value>https://blog.csdn.net/weixin_43500426/article/details/83315983</value>
     <comment>Here is your Privacy Statement url for Settings</comment>
   </data>
   <data name="Settings_Personalization.Text" xml:space="preserve">
@@ -194,5 +194,8 @@
   </data>
   <data name="Home.Content" xml:space="preserve">
     <value>折纸</value>
+  </data>
+  <data name="Page.Text" xml:space="preserve">
+    <value>步骤</value>
   </data>
 </root>
