@@ -19,18 +19,22 @@ namespace MVVMFingertipsArt.Views
     {
         public HomeViewModel ViewModel { get; } = new HomeViewModel();
         private static int _persistedItemIndex = -1;
+        private static HomePage _blank;
         public HomePage()
         {
           this.NavigationCacheMode = NavigationCacheMode.Enabled;
             InitializeComponent();
+            _blank = this;
             ViewModel.Initialize(HomeGrid);
 
         }
-
+        public static HomePage Blank { get { return _blank; } }
+        public ProgressRing MyProperty { get { return this.HomeRing; } }
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+           
             if(e.NavigationMode==NavigationMode.Back)
             {
                 await ViewModel.LoadAnimationAsync();

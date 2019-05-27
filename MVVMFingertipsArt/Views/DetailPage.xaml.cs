@@ -32,26 +32,17 @@ namespace MVVMFingertipsArt.Views
         public DetailPage()
         {
             this.InitializeComponent();
-            this.NavigationCacheMode = NavigationCacheMode.Enabled;
+          //  this.NavigationCacheMode = NavigationCacheMode.Enabled;
             ViewModel.Initialize(gridView);
 
 
         }
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-
             base.OnNavigatedTo(e);
             ConnectedAnimation imageAnimation = ConnectedAnimationService.GetForCurrentView().GetAnimation("ca1");
             if (imageAnimation != null)
             {
-                // Baseline connected animation:
-                //imageAnimation.TryStart(detailedImage);
-
-                // Connected animation + coordinated animation
-                //imageAnimation.TryStart(detailedImage, new UIElement[] { coordinatedPanel });
-
-                // Connected animation + coordinated animation + choreographed animation 
-                // Chain an animation after the connected animation completes using Implicit show animations
                   CreateImplicitAnimations();
                 imageAnimation.Completed += ImageAnimation_Completed;
                 imageAnimation.TryStart(HereElement, new UIElement[] { HeroDetailsElement });
@@ -59,9 +50,7 @@ namespace MVVMFingertipsArt.Views
             }
             if (e.NavigationMode == NavigationMode.Back)
             {
-
                 await ViewModel.LoadAnimationAsync();
-
             }
 
         }
@@ -74,9 +63,6 @@ namespace MVVMFingertipsArt.Views
             }
          
         }
-
-
-
         // Choreographed animations:
         Windows.UI.Composition.Compositor _compositor = null;
         void FetchCompositor()
@@ -97,7 +83,7 @@ namespace MVVMFingertipsArt.Views
             scaleHeaderAnimation.Duration = TimeSpan.FromSeconds(.25);
             scaleHeaderAnimation.Target = "Scale.Y";
 
-            ElementCompositionPreview.SetImplicitShowAnimation(ceshi, scaleHeaderAnimation);
+           // ElementCompositionPreview.SetImplicitShowAnimation((TextBlock)gridView.Header, scaleHeaderAnimation);
 
             // Animate the "more info" panel when it first shows.
             var fadeMoreInfoPanel = _compositor.CreateScalarKeyFrameAnimation();
@@ -116,12 +102,8 @@ namespace MVVMFingertipsArt.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Frame.Navigate(typeof(PlayerPage),ViewModel.Source.Movie);
+            ShellPage.RootFrame.Navigate(typeof(PlayerPage),ViewModel.Source.MovieUrl);
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-         string str= SqliteInsertDataService.InsertDataById(ViewModel.Source.Id);
-        }
     }
 }

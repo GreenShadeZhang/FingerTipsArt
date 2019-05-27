@@ -9,133 +9,96 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
  
     mc:Ignorable="d">
-    <!--<Grid
-        x:Name="ContentArea"
-        Margin="{StaticResource MediumLeftRightMargin}">-->
-        <!--<Grid
-        >-->
-            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
-                Place your content here.-->
+    <Page.Resources>
+        <DataTemplate x:Key="Big" x:DataType="data:HomeItemData">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Image x:Name="av"
+                           Width="280"                   
+                           Grid.Row="0"
+                           Source="{x:Bind Avatar}">
+                </Image>
+                <TextBlock
+                        Text="{x:Bind Name}"
+                         Grid.Row="1"                                                                     
+                         FontSize="36"
+                         HorizontalAlignment="Center"
+                         FontFamily="微软雅黑" />
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="Small" x:DataType="data:HomeItemData">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Image x:Name="av"
+                           Width="240"                   
+                           Grid.Row="0"
+                           Source="{x:Bind Avatar}">
+                </Image>
+                <TextBlock
+                        Text="{x:Bind Name}"
+                         Grid.Row="1"                                                                     
+                         FontSize="36"
+                         HorizontalAlignment="Center"
+                         FontFamily="微软雅黑" />
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+    <Grid>
+            <!--ContainerContentChanging="HomeGrid_ContainerContentChanging"  -->
+            <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1000" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="Logo.Margin" Value="0" />
+                        <Setter Target="Logo.HorizontalAlignment" Value="Left" ></Setter>
+                        <Setter Target="HomeGrid.ItemTemplate" Value="{StaticResource Big}" ></Setter>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="800" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="Logo.Margin" Value="0" />
+                        <Setter Target="Logo.HorizontalAlignment" Value="Left" ></Setter>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+            
+        </VisualStateManager.VisualStateGroups >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Image x:Name="Logo" 
+               VerticalAlignment="Top" 
+                Margin="0,80,0,0"
+               Grid.Row="0"
+               Width="370"
+         >
+            <Image.Source>
+                <SvgImageSource UriSource="ms-appx:///Assets/BuildCast.svg" />
+            </Image.Source>
+        </Image>
 
-            <!--<ParallaxView Source="{Binding ElementName=HomeGrid}"
-                          VerticalShift="500">
-                <Image Source="ms-appx:///Assets/b.jpg" />
-            </ParallaxView>-->
-          
-                    <!--<ScrollViewer>-->
-                <!--<Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="400"/>
-                        <RowDefinition />
-                    </Grid.RowDefinitions>-->
-                    <!--<Grid Grid.Row="0">
-                        <Image   Source="ms-appx:///Assets/B.JPG" Stretch="UniformToFill"/>
-                    </Grid>-->
-        <GridView ItemsSource="{x:Bind ViewModel.Data ,Mode=OneWay}"
-                              x:Name="HomeGrid"                     
-                              IsItemClickEnabled="True"
-                              ContainerContentChanging="HomeGrid_ContainerContentChanging"
-                          
+            <GridView ItemsSource="{x:Bind ViewModel.Data ,Mode=OneWay}"
+                              x:Name="HomeGrid"                                                                       
+                              Grid.Row="1"
+                  ItemTemplate="{StaticResource Small}"
+                              ItemContainerStyle="{StaticResource HomeGridViewItemRevealStyle}"
+                              IsItemClickEnabled="True"                           
                               ItemClick="{x:Bind ViewModel.GridView_ItemClick}">
 
-            <!--<GridView.HeaderTemplate>
-                        <DataTemplate>
-                            <StackPanel CornerRadius="40">
-                                --><!--<Image   Source="ms-appx:///Assets/B.JPG"
-                                         Height="400"
-                                         Stretch="UniformToFill" />--><!--
-                                <Image x:Name="Logo"
-                                       VerticalAlignment="Top"
-                                       Margin="0,30,0,0"
-                                    HorizontalAlignment="Left"
-                                       Width="500">
-                                    <Image.Source>
-                                        <SvgImageSource UriSource="ms-appx:///Assets/BuildCast.svg" />
-                                    </Image.Source>
-                                </Image>
-                            </StackPanel>
-                        </DataTemplate>
-                    </GridView.HeaderTemplate>-->
-        <GridView.HeaderTemplate>
-            <DataTemplate>
-                <Image x:Name="Logo"
-                                       VerticalAlignment="Top"
-                                       Margin="0,30,0,0"
-                                    HorizontalAlignment="Left"
-                                       Width="500">
-                    <Image.Source>
-                        <SvgImageSource UriSource="ms-appx:///Assets/BuildCast.svg" />
-                    </Image.Source>
-                </Image>
-            </DataTemplate>
-        </GridView.HeaderTemplate>
-        <GridView.ItemTemplate>
-            <DataTemplate x:DataType="data:GridViewDataTemplate">
-
-                <!--<StackPanel Margin="20"
-                                               CornerRadius="40"
-                                            Background="{StaticResource InAppBackgroundAcrylicBrush}">-->
-                
-                    <Grid
-                 
-                          CornerRadius="20"
-                         
-                            Margin="20">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                      
-                        
-                                    <Image x:Name="av"
-                                               Width="180"
-                                           Grid.Row="0"
-                                               Source="{x:Bind Avatar}">
-                        </Image>
-                        <TextBlock  Text="{x:Bind Name}"
-                                    Grid.Row="1"
-                                   
-                                    
-                                                FontSize="36"
-                                                HorizontalAlignment="Center"
-                                                FontFamily="微软雅黑" />
-                    </Grid>
-                  
-               
-
-                    <!--<TextBlock  Text="{x:Bind Name}"
-                                                FontSize="36"
-                                                HorizontalAlignment="Center"
-                                                FontFamily="微软雅黑" /
-
-                </StackPanel>>-->
-
-                <!--<Grid Height="300"
-                                              Width="180">
-                                            <Image x:Name="av"
-                                                   animations:Connected.Key="it"
-                                                   Source="{x:Bind Avatar}">
-                                            </Image>
-                                            <Border Background="#A5FFFFFF"
-                                                    Height="40"
-                                                    VerticalAlignment="Bottom">
-                                                <TextBlock  Text="{x:Bind Name}"
-                                                            FontSize="36"
-                                                            HorizontalAlignment="Center"
-                                                            FontFamily="微软雅黑" />
-                                            </Border>
-                                        </Grid>-->
-
-            </DataTemplate>
-        </GridView.ItemTemplate>
-    </GridView>
-
-                <!--</Grid>-->
-              
-                    <!--</ScrollViewer>-->
-               
-             
-
-        <!--</Grid>-->
-    <!--</Grid>-->
+            </GridView>
+            <ProgressRing Width="200" Height="200" Grid.Row="1"  x:Name="HomeRing"/>
+    </Grid>
 </Page>

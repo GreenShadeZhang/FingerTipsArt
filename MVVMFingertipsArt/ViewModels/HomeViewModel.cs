@@ -22,15 +22,15 @@ namespace MVVMFingertipsArt.ViewModels
         public HomeViewModel()
         {
         }
-        GridViewDataTemplate gridView;
+        HomeItemData gridView;
         private GridView _imagesGridView;
         public void Initialize(GridView imagesGridView)
         {
             _imagesGridView = imagesGridView;
         }
-        private ObservableCollection<GridViewDataTemplate> _gridViewDataTemplates = SqliteGetdataService.GetData();
-
-        public ObservableCollection<GridViewDataTemplate> Data
+        //private List<HomeItemData> _gridViewDataTemplates = GetDbData.GetHomeData();
+        private ObservableCollection<HomeItemData> _gridViewDataTemplates = new ItemsToShow();
+        public ObservableCollection<HomeItemData> Data
         {
             get
             {
@@ -42,10 +42,26 @@ namespace MVVMFingertipsArt.ViewModels
             }
         }
 
+        //public string LogoSource
+        //{
+        //    get
+        //    {
+        //        return ThemeSelectorService.GetLogoSource();
+        //    }
+        //}
 
-        private ObservableCollection<GridViewDataTemplate> _gridViewDataTemplates2 = SqliteGetdataService.GetData();
 
-        public ObservableCollection<GridViewDataTemplate> Data2
+        private string _logoSource = ThemeSelectorService.GetLogoSource();
+        public string LogoSource
+        {
+            get { return _logoSource; }
+
+            set { Set(ref _logoSource, value); }
+        }
+
+        private ObservableCollection<HomeItemData> _gridViewDataTemplates2 = null;
+
+        public ObservableCollection<HomeItemData> Data2
         {
             get
             {
@@ -77,12 +93,12 @@ namespace MVVMFingertipsArt.ViewModels
         }
         public void GridView_ItemClick(object sender, ItemClickEventArgs e)
         {
-         gridView = e.ClickedItem as GridViewDataTemplate;
+         gridView = e.ClickedItem as HomeItemData;
             Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
-            localSettings.Values["ID"] = gridView.Id;
+            localSettings.Values["ID"] = gridView.OrigamiId;
             //  ApplicationData.Current.LocalSettings.SaveString("ID", gridView.Id.ToString());
               var animation = _imagesGridView.PrepareConnectedAnimation("ca1", gridView, "av");
-            NavigationService.Frame.Navigate(typeof(DetailPage));
+            ShellPage.RootFrame.Navigate(typeof(DetailPage));
        
         }
 
