@@ -33,7 +33,7 @@ namespace MVVMFingertipsArt.Views
 
         private void Button_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            interstitialAd.RequestAd(AdType.Video, "d25517cb-12d4-4699-8bdc-52040c712cab", "test");
+            interstitialAd.RequestAd(AdType.Video, "9nvqf4c9m5bd", "1100049404");
         }
 
         //This is an event handler for the interstitial ad. It is triggered when the interstitial ad is ready to play.

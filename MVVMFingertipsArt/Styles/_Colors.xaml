@@ -591,7 +591,6 @@
                 <ControlTemplate TargetType="GridViewItem">
                     <ListViewItemPresenter ContentTransitions="{TemplateBinding ContentTransitions}"
                         x:Name="Root"
-                        CornerRadius="20"
                         Control.IsTemplateFocusTarget="True"
                         FocusVisualMargin="{TemplateBinding FocusVisualMargin}"
                         SelectionCheckMarkVisualEnabled="{ThemeResource GridViewItemSelectionCheckMarkVisualEnabled}"

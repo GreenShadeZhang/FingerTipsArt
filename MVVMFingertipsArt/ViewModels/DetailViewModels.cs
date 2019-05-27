@@ -86,8 +86,8 @@ namespace MVVMFingertipsArt.ViewModels
         {
             var selected = args.ClickedItem as Pic;
           
-             _imagesGridView.PrepareConnectedAnimation(ImageGalleryAnimationOpen, selected, "ItemThumbnail");
-            ShellPage.RootFrame.Navigate(typeof(ImageDetailPage),selected.Id);
+             //imagesGridView.PrepareConnectedAnimation(ImageGalleryAnimationOpen, selected, "ItemThumbnail");
+            ShellPage.RootFrame.Navigate(typeof(ImageDetailPage),selected.Id, new DrillInNavigationTransitionInfo());
         }
 
        

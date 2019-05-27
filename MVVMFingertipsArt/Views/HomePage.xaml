@@ -91,7 +91,7 @@
         </Image>
 
             <GridView ItemsSource="{x:Bind ViewModel.Data ,Mode=OneWay}"
-                              x:Name="HomeGrid"                                                                       
+                              x:Name="HomeGrid"                                                                     
                               Grid.Row="1"
                   ItemTemplate="{StaticResource Small}"
                               ItemContainerStyle="{StaticResource HomeGridViewItemRevealStyle}"

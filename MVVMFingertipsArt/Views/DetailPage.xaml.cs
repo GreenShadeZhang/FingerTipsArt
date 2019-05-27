@@ -32,37 +32,37 @@ namespace MVVMFingertipsArt.Views
         public DetailPage()
         {
             this.InitializeComponent();
-          //  this.NavigationCacheMode = NavigationCacheMode.Enabled;
-            ViewModel.Initialize(gridView);
+            //  this.NavigationCacheMode = NavigationCacheMode.Enabled;
+            // ViewModel.Initialize(gridView);
 
 
         }
-        protected async override void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            ConnectedAnimation imageAnimation = ConnectedAnimationService.GetForCurrentView().GetAnimation("ca1");
-            if (imageAnimation != null)
-            {
-                  CreateImplicitAnimations();
-                imageAnimation.Completed += ImageAnimation_Completed;
-                imageAnimation.TryStart(HereElement, new UIElement[] { HeroDetailsElement });
+            //ConnectedAnimation imageAnimation = ConnectedAnimationService.GetForCurrentView().GetAnimation("ca1");
+            //if (imageAnimation != null)
+            //{
+            //      CreateImplicitAnimations();
+            //    imageAnimation.Completed += ImageAnimation_Completed;
+            //    imageAnimation.TryStart(HereElement, new UIElement[] { HeroDetailsElement });
 
-            }
-            if (e.NavigationMode == NavigationMode.Back)
-            {
-                await ViewModel.LoadAnimationAsync();
-            }
+            //}
+            //if (e.NavigationMode == NavigationMode.Back)
+            //{
+            //    await ViewModel.LoadAnimationAsync();
+            //}
 
         }
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
-        {
-            base.OnNavigatedFrom(e);
-            if (e.NavigationMode == NavigationMode.Back)
-            {
-                ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("ca2", HereElement);
-            }
-         
-        }
+        //protected override void OnNavigatedFrom(NavigationEventArgs e)
+        //{
+        //    base.OnNavigatedFrom(e);
+        //    if (e.NavigationMode == NavigationMode.Back)
+        //    {
+        //        ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("ca2", HereElement);
+        //    }
+
+        //}
         // Choreographed animations:
         Windows.UI.Composition.Compositor _compositor = null;
         void FetchCompositor()
@@ -75,7 +75,7 @@ namespace MVVMFingertipsArt.Views
         {
             FetchCompositor();
             // moreInfoPanel.Visibility = Visibility.Collapsed;
-           gridView.Visibility = Visibility.Collapsed;
+            gridView.Visibility = Visibility.Collapsed;
             // Animate the header background scale when it first shows.
             var scaleHeaderAnimation = _compositor.CreateScalarKeyFrameAnimation();
             scaleHeaderAnimation.InsertKeyFrame(0, .5f);
@@ -83,7 +83,7 @@ namespace MVVMFingertipsArt.Views
             scaleHeaderAnimation.Duration = TimeSpan.FromSeconds(.25);
             scaleHeaderAnimation.Target = "Scale.Y";
 
-           // ElementCompositionPreview.SetImplicitShowAnimation((TextBlock)gridView.Header, scaleHeaderAnimation);
+            // ElementCompositionPreview.SetImplicitShowAnimation((TextBlock)gridView.Header, scaleHeaderAnimation);
 
             // Animate the "more info" panel when it first shows.
             var fadeMoreInfoPanel = _compositor.CreateScalarKeyFrameAnimation();
@@ -102,7 +102,7 @@ namespace MVVMFingertipsArt.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ShellPage.RootFrame.Navigate(typeof(PlayerPage),ViewModel.Source.MovieUrl);
+            ShellPage.RootFrame.Navigate(typeof(PlayerPage), ViewModel.Source.MovieUrl);
         }
 
     }
