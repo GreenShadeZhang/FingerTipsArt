@@ -71,6 +71,7 @@
                     x:Uid="Settings_PrivacyTermsLink"
                     Margin="{StaticResource EightTopMargin}" />
             </StackPanel>
+            <Button Content="广告按钮" Click="Button_Click"/>
         </StackPanel>
     </Grid>    
 </Page>

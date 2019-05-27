@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:genTemplate="http://schemas.microsoft.com/appx/developer/windowsTemplateStudio" IgnorableNamespaces="uap mp genTemplate">
-  <Identity Name="4497D4FE-E776-49AB-90D1-0B20A35ABC48" Publisher="CN=KANG" Version="1.0.1.0" />
-  <mp:PhoneIdentity PhoneProductId="4497D4FE-E776-49AB-90D1-0B20A35ABC4F" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="37619DC86D31F.704641CEA753" Publisher="CN=829B8DD1-2BF4-465F-8663-BB54D1109ED6" Version="1.0.1.0" />
+  <mp:PhoneIdentity PhoneProductId="0f85098c-88f9-429e-9a36-42b78c1f930b" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>MVVMFingertipsArt</DisplayName>
-    <PublisherDisplayName>KANG</PublisherDisplayName>
+    <DisplayName>指尖艺术</DisplayName>
+    <PublisherDisplayName>张广建</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>

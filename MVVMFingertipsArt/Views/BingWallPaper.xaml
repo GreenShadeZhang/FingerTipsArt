@@ -8,7 +8,7 @@
     mc:Ignorable="d"
      xmlns:data="using:MVVMFingertipsArt.Models"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
-   
+ 
     Background="{ThemeResource SystemControlAcrylicElementBrush}">
     <Page.Resources>
         <DataTemplate x:Key="PhotosTemplate" x:DataType="data:WallpapersDetail">
