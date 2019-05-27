@@ -9,7 +9,7 @@
       KeyDown="OnPageKeyDown"
       xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
       xmlns:data="using:MVVMFingertipsArt.Models"
-      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    >
     <Page.Resources>
         <Storyboard x:Name="showFlipView"
                     Completed="OnShowFlipViewCompleted">
@@ -42,9 +42,25 @@
             <FlipView.ItemTemplate>
                 <DataTemplate x:DataType="data:Pic">
                     <Viewbox StretchDirection="DownOnly">
-                        <Image x:Name="detailImage"
-                               Stretch="None"
-                               Source="{x:Bind Pic1, Mode=OneWay}" />
+                        <StackPanel>
+                            <Image x:Name="detailImage"
+                               Stretch="Uniform"
+                               Source="{x:Bind MovieUrl, Mode=OneWay}" />
+                            <StackPanel Orientation="Horizontal"
+                                        Height="100"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center">
+                                <TextBlock FontSize="36" x:Uid="Page"
+                                       Margin="4"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+                                <TextBlock FontSize="36" Text="{x:Bind Id}"
+                                       Margin="4"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+
+                            </StackPanel>
+                        </StackPanel>
                     </Viewbox>
                 </DataTemplate>
             </FlipView.ItemTemplate>
@@ -54,7 +70,7 @@
         <Grid x:Name="shapeGrid"           
               Background="{ThemeResource FlipViewBackground}" />
         <Image x:Name="previewImage"
-             
-               Source="{x:Bind ViewModel.SelectedImage.(data:Pic.Pic1), Mode=OneWay}" />
+               Visibility="Collapsed"
+               Source="{x:Bind ViewModel.SelectedImage.(data:Pic.MovieUrl), Mode=OneWay}" />
     </Grid>
 </Page>
