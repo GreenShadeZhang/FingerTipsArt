@@ -94,11 +94,11 @@ namespace MVVMFingertipsArt.ViewModels
         public void GridView_ItemClick(object sender, ItemClickEventArgs e)
         {
          gridView = e.ClickedItem as HomeItemData;
-            Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+             Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
             localSettings.Values["ID"] = gridView.OrigamiId;
             //  ApplicationData.Current.LocalSettings.SaveString("ID", gridView.Id.ToString());
-              var animation = _imagesGridView.PrepareConnectedAnimation("ca1", gridView, "av");
-            ShellPage.RootFrame.Navigate(typeof(DetailPage));
+              //var animation = _imagesGridView.PrepareConnectedAnimation("ca1", gridView, "av");
+            ShellPage.RootFrame.Navigate(typeof(DetailPage),null, new DrillInNavigationTransitionInfo());
        
         }
 
