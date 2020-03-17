@@ -2,32 +2,65 @@
     x:Class="MVVMFingertipsArt.Views.BingWallPaper"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:MVVMFingertipsArt.Views"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-     xmlns:data="using:MVVMFingertipsArt.Models"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
- 
-    Background="{ThemeResource SystemControlAcrylicElementBrush}">
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:data="using:MVVMFingertipsArt.Models"
+    xmlns:local="using:MVVMFingertipsArt.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Background="{ThemeResource SystemControlAcrylicElementBrush}"
+    mc:Ignorable="d">
     <Page.Resources>
         <DataTemplate x:Key="PhotosTemplate" x:DataType="data:WallpapersDetail">
             <StackPanel>
-                <controls:ImageEx Name="ImageExControl" IsCacheEnabled="True"                                    
-                         PlaceholderSource="/Assets/Default.jpg"  
-                                          PlaceholderStretch="UniformToFill"
-                         
-                         Source="{x:Bind Source}" CornerRadius="20"/>
-                <TextBlock Text="{x:Bind Title}" TextWrapping="WrapWholeWords"
-                           Margin="4"
-                           Height="60"
-                           VerticalAlignment="Center"
-                                   FontSize="20" HorizontalAlignment="Center"/>
+                <controls:ImageEx
+                    Name="ImageExControl"
+                    CornerRadius="20"
+                    IsCacheEnabled="True"
+                    PlaceholderSource="/Assets/Default.jpg"
+                    PlaceholderStretch="UniformToFill"
+                    Source="{x:Bind Source}" />
+                <TextBlock
+                    Height="60"
+                    Margin="4"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="20"
+                    Text="{x:Bind Title}"
+                    TextWrapping="WrapWholeWords" />
             </StackPanel>
         </DataTemplate>
-        
+
     </Page.Resources>
     <Grid>
+        <controls:AdaptiveGridView
+            x:Name="Gv"
+            Margin="24,80,24,40"
+            DesiredWidth="600"
+            IsItemClickEnabled="True"
+            ItemContainerStyle="{StaticResource MyGridViewItemRevealStyle}"
+            ItemTemplate="{StaticResource PhotosTemplate}"
+            OneRowModeEnabled="False"
+            SelectionMode="Single">
+
+            <controls:AdaptiveGridView.ContextFlyout>
+                <MenuFlyout Opening="MenuFlyout_Opening">
+                    <MenuFlyoutItem
+                        x:Name="Save"
+                        Click="Save_Click"
+                        Text="保存" />
+                </MenuFlyout>
+            </controls:AdaptiveGridView.ContextFlyout>
+        </controls:AdaptiveGridView>
+        <controls:InAppNotification
+            x:Name="ExampleInAppNotification"
+            HorizontalAlignment="Center"
+            ShowDismissButton="False"
+            StackMode="Replace"
+            Style="{StaticResource MSEdgeNotificationTemplate_NoDismissButton}" />
+        <ProgressRing
+            x:Name="Pro"
+            Width="160"
+            Height="160" />
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState>
@@ -39,29 +72,6 @@
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups >
-        <controls:AdaptiveGridView Name="Gv"
-                                   Margin="24,80,24,40"
-                                   OneRowModeEnabled="False"
-                                   DesiredWidth="600"
-                                   SelectionMode="Single"                         
-                                   IsItemClickEnabled="True"
-                                   ItemContainerStyle="{StaticResource MyGridViewItemRevealStyle}"
-                                   ItemTemplate="{StaticResource PhotosTemplate}">
-
-            <controls:AdaptiveGridView.ContextFlyout>
-                <MenuFlyout Opening="MenuFlyout_Opening">
-                    <MenuFlyoutItem Text="保存"                                    
-                                            x:Name="Save"
-                                    Click="Save_Click" />
-                </MenuFlyout>
-            </controls:AdaptiveGridView.ContextFlyout>
-        </controls:AdaptiveGridView>
-        <controls:InAppNotification x:Name="ExampleInAppNotification"
-                                    ShowDismissButton="False"   
-                                    Style="{StaticResource MSEdgeNotificationTemplate_NoDismissButton}"
-                                    HorizontalAlignment="Center"
-                                    StackMode="Replace" />
-        <ProgressRing x:Name="Pro" Width="160" Height="160"/>
+        </VisualStateManager.VisualStateGroups>
     </Grid>
 </Page>

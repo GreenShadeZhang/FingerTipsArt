@@ -39,7 +39,7 @@ namespace MVVMFingertipsArt.ViewModels
         {      
             Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
             Int32 sampleImageId = (Int32)localSettings.Values["ID"];
-            _source = GetDbData.GetOrigamiData(sampleImageId);
+            _source = GetDbDataService.GetOrigamiData(sampleImageId);
         }
 
         public void SetImage(UIElement image) => _image = image;

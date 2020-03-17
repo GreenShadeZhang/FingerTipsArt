@@ -19,7 +19,8 @@
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
     <PackageCertificateKeyFile>
     </PackageCertificateKeyFile>
-    <PackageCertificateThumbprint>F8BCB477D2263A50DDD7DF888991342E79DCB927</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>80B394CB79F369E2D4A2F88BF964B5C9589C867C</PackageCertificateThumbprint>
+    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -95,20 +96,23 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.Sqlite.Core">
-      <Version>2.2.0</Version>
+      <Version>3.1.2</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.1.9</Version>
+      <Version>6.2.9</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
-      <Version>5.1.1</Version>
+      <Version>6.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.UI.Xaml">
+      <Version>2.3.200213001</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Xaml.Behaviors.Uwp.Managed">
-      <Version>2.0.0</Version>
+      <Version>2.0.1</Version>
     </PackageReference>
     <!-- Nuget package references -->
     <PackageReference Include="Newtonsoft.Json">
-      <Version>12.0.1</Version>
+      <Version>12.0.3</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -125,7 +129,7 @@
     <Compile Include="Models\Pic.cs" />
     <Compile Include="Models\WallPapersData.cs" />
     <Compile Include="Models\WallpapersDetail.cs" />
-    <Compile Include="Services\GetDbData.cs" />
+    <Compile Include="Services\GetDbDataService.cs" />
     <Compile Include="Services\ItemsToShow.cs" />
     <Compile Include="Services\ThemeSelectorService.cs" />
     <Compile Include="Services\WallpaperService.cs" />
@@ -330,6 +334,9 @@
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
     <Content Include="Assets\BuildCast345.svg" />
     <Content Include="Assets\BuildCast.svg" />
+    <Content Include="Assets\blogging.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="Properties\Default.rd.xml">
       <SubType>Designer</SubType>
@@ -343,7 +350,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />
-    <Content Include="Assets\blogging.db" />
+    <Content Include="Assets\bloggingold.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="MVVMFingertipsArt_TemporaryKey.pfx" />
     <PRIResource Include="Strings\en-us\Resources.resw" />
     <PRIResource Include="Strings\zh-cn\Resources.resw" />
@@ -361,9 +370,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <SDKReference Include="Microsoft.Advertising.Xaml, Version=10.0">
-      <Name>Microsoft Advertising SDK for XAML</Name>
-    </SDKReference>
     <SDKReference Include="Microsoft.VCLibs, Version=14.0">
       <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
     </SDKReference>

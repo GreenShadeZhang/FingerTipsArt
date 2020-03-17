@@ -30,7 +30,7 @@ namespace MVVMFingertipsArt.Views
         //BackgroundImage.Visibility = Visibility.Visible;
 
 
-        private void NavShell_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+        private void NavShell_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs args)
         {
             if (args.IsSettingsInvoked == true)
             {
@@ -62,10 +62,10 @@ namespace MVVMFingertipsArt.Views
             switch (e.SourcePageType)
             {
                 case Type c when e.SourcePageType == typeof(HomePage):
-                    ((NavigationViewItem)NavShell.MenuItems[0]).IsSelected = true;
+                    ((Microsoft.UI.Xaml.Controls.NavigationViewItem)NavShell.MenuItems[0]).IsSelected = true;
                     break;
                 case Type c when e.SourcePageType == typeof(BingWallPaper):
-                    ((NavigationViewItem)NavShell.MenuItems[1]).IsSelected = true;
+                    ((Microsoft.UI.Xaml.Controls.NavigationViewItem)NavShell.MenuItems[1]).IsSelected = true;
                     break;
                     //case Type c when e.SourcePageType == typeof(MasterDetailPage2):
                     //    ((NavigationViewItem)NavView.MenuItems[2]).IsSelected = true;
@@ -77,9 +77,8 @@ namespace MVVMFingertipsArt.Views
             }
         }
 
-        private async void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            await GetDbData.MakeSureSqliteExsitAsync();
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {           
             ContentFrame.Navigate(typeof(HomePage));
         }
     }

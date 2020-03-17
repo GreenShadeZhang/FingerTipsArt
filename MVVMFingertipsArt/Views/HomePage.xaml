@@ -2,56 +2,94 @@
     x:Class="MVVMFingertipsArt.Views.HomePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:data="using:MVVMFingertipsArt.Models"
-      xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
-      xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
- 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     <Page.Resources>
         <DataTemplate x:Key="Big" x:DataType="data:HomeItemData">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition/>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
-                <Image x:Name="av"
-                           Width="280"                   
-                           Grid.Row="0"
-                           Source="{x:Bind Avatar}">
-                </Image>
+                <Image
+                    x:Name="av"
+                    Grid.Row="0"
+                    Source="{x:Bind Avatar}" />
                 <TextBlock
-                        Text="{x:Bind Name}"
-                         Grid.Row="1"                                                                     
-                         FontSize="36"
-                         HorizontalAlignment="Center"
-                         FontFamily="微软雅黑" />
+                    Grid.Row="1"
+                    HorizontalAlignment="Center"
+                    FontFamily="微软雅黑"
+                    FontSize="36"
+                    Text="{x:Bind Name}" />
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="Small" x:DataType="data:HomeItemData">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition/>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
-                <Image x:Name="av"
-                           Width="240"                   
-                           Grid.Row="0"
-                           Source="{x:Bind Avatar}">
-                </Image>
+                <Image
+                    x:Name="av"
+                    Grid.Row="0"
+                    Source="{x:Bind Avatar}" />
                 <TextBlock
-                        Text="{x:Bind Name}"
-                         Grid.Row="1"                                                                     
-                         FontSize="36"
-                         HorizontalAlignment="Center"
-                         FontFamily="微软雅黑" />
+                    Grid.Row="1"
+                    HorizontalAlignment="Center"
+                    FontFamily="微软雅黑"
+                    FontSize="36"
+                    Text="{x:Bind Name}" />
             </Grid>
         </DataTemplate>
+        <ItemsPanelTemplate x:Key="ItemPannel">
+            <ItemsStackPanel Margin="14,0,0,0" Orientation="Horizontal" />
+        </ItemsPanelTemplate>
     </Page.Resources>
     <Grid>
-            <!--ContainerContentChanging="HomeGrid_ContainerContentChanging"  -->
-            <VisualStateManager.VisualStateGroups>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Image
+            x:Name="Logo"
+            Grid.Row="0"
+            Width="370"
+            Margin="0,80,0,0"
+            VerticalAlignment="Top">
+            <Image.Source>
+                <SvgImageSource UriSource="ms-appx:///Assets/BuildCast.svg" />
+            </Image.Source>
+        </Image>
+
+        <!--<GridView
+            x:Name="HomeGrid"
+            Grid.Row="1"
+            HorizontalAlignment="Center"
+            IsItemClickEnabled="True"
+            ItemClick="HomeGrid_ItemClick"
+            ItemContainerTransitions="{x:Null}"
+            ItemTemplate="{StaticResource Small}" />-->
+        <controls:AdaptiveGridView
+            x:Name="HomeGrid"
+            Grid.Row="1"
+            Margin="8"
+            DesiredWidth="296"
+            IsItemClickEnabled="True"
+            ItemClick="HomeGrid_ItemClick"
+            ItemTemplate="{StaticResource Small}"
+            OneRowModeEnabled="False"
+            SelectionMode="Single" />
+        <ProgressRing
+            x:Name="HomeRing"
+            Grid.Row="1"
+            Width="200"
+            Height="200" />
+        <!--  ContainerContentChanging="HomeGrid_ContainerContentChanging"  -->
+        <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState>
                     <VisualState.StateTriggers>
@@ -59,8 +97,8 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="Logo.Margin" Value="0" />
-                        <Setter Target="Logo.HorizontalAlignment" Value="Left" ></Setter>
-                        <Setter Target="HomeGrid.ItemTemplate" Value="{StaticResource Big}" ></Setter>
+                        <Setter Target="Logo.HorizontalAlignment" Value="Left" />
+                        <Setter Target="HomeGrid.ItemTemplate" Value="{StaticResource Big}" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState>
@@ -69,36 +107,11 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="Logo.Margin" Value="0" />
-                        <Setter Target="Logo.HorizontalAlignment" Value="Left" ></Setter>
+                        <Setter Target="Logo.HorizontalAlignment" Value="Left" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
-            
-        </VisualStateManager.VisualStateGroups >
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-        </Grid.RowDefinitions>
-        <Image x:Name="Logo" 
-               VerticalAlignment="Top" 
-                Margin="0,80,0,0"
-               Grid.Row="0"
-               Width="370"
-         >
-            <Image.Source>
-                <SvgImageSource UriSource="ms-appx:///Assets/BuildCast.svg" />
-            </Image.Source>
-        </Image>
 
-            <GridView ItemsSource="{x:Bind ViewModel.Data ,Mode=OneWay}"
-                              x:Name="HomeGrid"                                                                     
-                              Grid.Row="1"
-                  ItemTemplate="{StaticResource Small}"
-                              ItemContainerStyle="{StaticResource HomeGridViewItemRevealStyle}"
-                              IsItemClickEnabled="True"                           
-                              ItemClick="{x:Bind ViewModel.GridView_ItemClick}">
-
-            </GridView>
-            <ProgressRing Width="200" Height="200" Grid.Row="1"  x:Name="HomeRing"/>
+        </VisualStateManager.VisualStateGroups>
     </Grid>
 </Page>

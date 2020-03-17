@@ -36,37 +36,29 @@ namespace MVVMFingertipsArt.Services
 
         public IAsyncOperation<LoadMoreItemsResult> LoadMoreItemsAsync(uint count)
         {
-            ProgressRing progressBar = HomePage.Blank.MyProperty;
+            //ProgressRing progressBar = HomePage.Blank.MyProperty;
 
             CoreDispatcher coreDispatcher = Window.Current.Dispatcher;
 
             return Task.Run(async () =>
             {
-                await coreDispatcher.RunAsync(CoreDispatcherPriority.Normal,
-                    () =>
-                    {
-                        progressBar.Visibility = Visibility.Visible;
-                        progressBar.IsActive = true;
-                    });
-             
-              
-                var res =  GetDbData.GetHomeDataListAsync(index,9);
+                var res = await GetDbDataService.GetHomeDataListAsync(index, 9);
                 index++;
-                totalCount = res.ItemCount;
-                var homeItemdatas = new ObservableCollection<HomeItemData>();
-               
-                //this.Add();
-                lastItem += res.Count;
-                await coreDispatcher.RunAsync(CoreDispatcherPriority.Normal,
-                  () =>
-                  {
-                      foreach (var item in res)
-                      {
-                          this.Add(new HomeItemData(item));
-                      }
-                      progressBar.Visibility = Visibility.Collapsed;
-                      progressBar.IsActive = false;
-                  });
+                //totalCount = res.ItemCount;
+                //var homeItemdatas = new ObservableCollection<HomeItemData>();
+
+                ////this.Add();
+                //lastItem += res.Count;
+                //await coreDispatcher.RunAsync(CoreDispatcherPriority.Normal,
+                //  () =>
+                //  {
+                //      foreach (var item in res)
+                //      {
+                //          this.Add(new HomeItemData(item));
+                //      }
+                //      progressBar.Visibility = Visibility.Collapsed;
+                //      progressBar.IsActive = false;
+                //  });
 
                 return new LoadMoreItemsResult() { Count = count };
             }).AsAsyncOperation<LoadMoreItemsResult>();

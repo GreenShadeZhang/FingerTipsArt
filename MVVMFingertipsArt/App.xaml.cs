@@ -93,9 +93,12 @@ namespace MVVMFingertipsArt
         /// <returns></returns>
         private async Task StartupAsync()
         {
-            ThemeSelectorService.SetRequestedTheme();
+            ThemeSelectorService.SetRequestedTheme();            
             //ThemeSelectorService.SetupTitlebar();
-
+            //var dbFile =  Windows.Storage.ApplicationData.Current.LocalFolder.Path;
+            //GetDbDataService.Path = dbFile;
+            GetDbDataService.Lan = Microsoft.Toolkit.Uwp.Helpers.SystemInformation.Culture.Name.ToLower();
+            await GetDbDataService.MakeSureSqliteExsitAsync();
             await Task.CompletedTask;
         }
         /// <summary>

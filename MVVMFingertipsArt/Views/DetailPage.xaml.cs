@@ -27,83 +27,22 @@ namespace MVVMFingertipsArt.Views
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
     public sealed partial class DetailPage : Page
-    {
-        public DetailViewModels ViewModel { get; } = new DetailViewModels();
+    {    
         public DetailPage()
         {
-            this.InitializeComponent();
-            //  this.NavigationCacheMode = NavigationCacheMode.Enabled;
-            // ViewModel.Initialize(gridView);
-
-
+            this.InitializeComponent();         
         }
+        public OrigamiDetail OrigamiDetail { set; get; }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            base.OnNavigatedTo(e);
-            //ConnectedAnimation imageAnimation = ConnectedAnimationService.GetForCurrentView().GetAnimation("ca1");
-            //if (imageAnimation != null)
-            //{
-            //      CreateImplicitAnimations();
-            //    imageAnimation.Completed += ImageAnimation_Completed;
-            //    imageAnimation.TryStart(HereElement, new UIElement[] { HeroDetailsElement });
+           int sampleImageId=(int)e.Parameter;
+            OrigamiDetail = GetDbDataService.GetOrigamiData(sampleImageId);
 
-            //}
-            //if (e.NavigationMode == NavigationMode.Back)
-            //{
-            //    await ViewModel.LoadAnimationAsync();
-            //}
-
-        }
-        //protected override void OnNavigatedFrom(NavigationEventArgs e)
-        //{
-        //    base.OnNavigatedFrom(e);
-        //    if (e.NavigationMode == NavigationMode.Back)
-        //    {
-        //        ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("ca2", HereElement);
-        //    }
-
-        //}
-        // Choreographed animations:
-        Windows.UI.Composition.Compositor _compositor = null;
-        void FetchCompositor()
-        {
-            if (_compositor == null)
-                _compositor = ElementCompositionPreview.GetElementVisual(this).Compositor;
-        }
-
-        void CreateImplicitAnimations()
-        {
-            FetchCompositor();
-            // moreInfoPanel.Visibility = Visibility.Collapsed;
-            gridView.Visibility = Visibility.Collapsed;
-            // Animate the header background scale when it first shows.
-            var scaleHeaderAnimation = _compositor.CreateScalarKeyFrameAnimation();
-            scaleHeaderAnimation.InsertKeyFrame(0, .5f);
-            scaleHeaderAnimation.InsertKeyFrame(1, 1f);
-            scaleHeaderAnimation.Duration = TimeSpan.FromSeconds(.25);
-            scaleHeaderAnimation.Target = "Scale.Y";
-
-            // ElementCompositionPreview.SetImplicitShowAnimation((TextBlock)gridView.Header, scaleHeaderAnimation);
-
-            // Animate the "more info" panel when it first shows.
-            var fadeMoreInfoPanel = _compositor.CreateScalarKeyFrameAnimation();
-            fadeMoreInfoPanel.InsertKeyFrame(0, 0f);
-            fadeMoreInfoPanel.InsertKeyFrame(1, 1f);
-            fadeMoreInfoPanel.Duration = TimeSpan.FromSeconds(.5);
-            fadeMoreInfoPanel.Target = "Opacity";
-
-            ElementCompositionPreview.SetImplicitShowAnimation(gridView, fadeMoreInfoPanel);
-        }
-        // Toggle the panel to visible after the connected animation completes. 
-        private void ImageAnimation_Completed(ConnectedAnimation sender, object args)
-        {
-            gridView.Visibility = Visibility.Visible;
-        }
-
+        }          
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ShellPage.RootFrame.Navigate(typeof(PlayerPage), ViewModel.Source.MovieUrl);
+            ShellPage.RootFrame.Navigate(typeof(PlayerPage), OrigamiDetail.MovieUrl);
         }
-
+       
     }
 }

@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Numerics;
 using System.Threading.Tasks;
+using Microsoft.Toolkit.Uwp.Helpers;
 using MVVMFingertipsArt.Models;
 using MVVMFingertipsArt.Services;
 using MVVMFingertipsArt.ViewModels;
+using Windows.Globalization;
 using Windows.Storage;
 using Windows.UI.Composition;
 using Windows.UI.Xaml;
@@ -17,88 +21,32 @@ namespace MVVMFingertipsArt.Views
 {
     public sealed partial class HomePage : Page
     {
-        public HomeViewModel ViewModel { get; } = new HomeViewModel();
-        private static int _persistedItemIndex = -1;
-        private static HomePage _blank;
         public HomePage()
         {
-          this.NavigationCacheMode = NavigationCacheMode.Enabled;
+            this.NavigationCacheMode = NavigationCacheMode.Enabled;
             InitializeComponent();
-            _blank = this;
-            ViewModel.Initialize(HomeGrid);
-
         }
-        public static HomePage Blank { get { return _blank; } }
-        public ProgressRing MyProperty { get { return this.HomeRing; } }
-
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            base.OnNavigatedTo(e);
-           
-            if(e.NavigationMode==NavigationMode.Back)
+            try
             {
-                await ViewModel.LoadAnimationAsync();
-                //ConnectedAnimation animation = ConnectedAnimationService.GetForCurrentView().GetAnimation("ca2");
-                //if (animation != null)
-                //{
-                //    //   animation.Configuration = new DirectConnectedAnimationConfiguration();
-                //    await collection.TryStartConnectedAnimationAsync(animation, _storeditem, "connectedElement");
-                //}
+                var res = await GetDbDataService.GetHomeDataListAsync(0, 50);
+                var homeItemdatas = new ObservableCollection<HomeItemData>();
+                foreach (var item in res)
+                {
+                    homeItemdatas.Add(new HomeItemData(item));
+                }
+                HomeGrid.ItemsSource = homeItemdatas;
+            }
+            catch (Exception ex)
+            {
+
             }
         }
-
-        private void HomeGrid_ContainerContentChanging(ListViewBase sender, ContainerContentChangingEventArgs args)
+        private void HomeGrid_ItemClick(object sender, ItemClickEventArgs e)
         {
-            args.ItemContainer.Loaded += ItemContainer_Loaded;
+            var gridView = e.ClickedItem as HomeItemData;
+            ShellPage.RootFrame.Navigate(typeof(DetailPage), gridView.OrigamiId, new DrillInNavigationTransitionInfo());
         }
-
-        private void ItemContainer_Loaded(object sender, RoutedEventArgs e)
-        {
-           //var itemsPanel = (ItemsStackPanel)this.HomeGrid.ItemsPanelRoot;
-          //  var itemsPanel = this.HomeGrid.ItemsPanelRoot;
-            var itemContainer = (GridViewItem)sender;
-
-            var itemIndex = this.HomeGrid.IndexFromContainer(itemContainer);
-
-            var relativeIndex = itemIndex;//itemsPanel.FirstVisibleIndex;
-
-            var uc = itemContainer.ContentTemplateRoot ;
-
-            if (itemIndex != _persistedItemIndex && itemIndex >= 0) // && itemIndex >= itemsPanel.FirstVisibleIndex && itemIndex <= itemsPanel.LastVisibleIndex)
-            {
-                var itemVisual = ElementCompositionPreview.GetElementVisual(uc);
-                ElementCompositionPreview.SetIsTranslationEnabled(uc, true);
-
-                var easingFunction = Window.Current.Compositor.CreateCubicBezierEasingFunction(new Vector2(0.1f, 0.9f), new Vector2(0.2f, 1f));
-
-                // Create KeyFrameAnimations
-                var offsetAnimation = Window.Current.Compositor.CreateScalarKeyFrameAnimation();
-                offsetAnimation.InsertKeyFrame(0f, 100);
-                offsetAnimation.InsertKeyFrame(1f, 0, easingFunction);
-                offsetAnimation.Target = "Translation.X";
-                offsetAnimation.DelayBehavior = AnimationDelayBehavior.SetInitialValueBeforeDelay;
-                offsetAnimation.Duration = TimeSpan.FromMilliseconds(300);
-                offsetAnimation.DelayTime = TimeSpan.FromMilliseconds(relativeIndex * 100);
-
-                var fadeAnimation = Window.Current.Compositor.CreateScalarKeyFrameAnimation();
-                fadeAnimation.InsertExpressionKeyFrame(0f, "0");
-                fadeAnimation.InsertExpressionKeyFrame(1f, "1");
-                fadeAnimation.DelayBehavior = AnimationDelayBehavior.SetInitialValueBeforeDelay;
-                fadeAnimation.Duration = TimeSpan.FromMilliseconds(300);
-                fadeAnimation.DelayTime = TimeSpan.FromMilliseconds(relativeIndex * 100);
-
-                // Start animations
-                itemVisual.StartAnimation("Translation.X", offsetAnimation);
-                itemVisual.StartAnimation("Opacity", fadeAnimation);
-            }
-            else
-            {
-              //  Debug.WriteLine("Skipping");
-            }
-
-            itemContainer.Loaded -= this.ItemContainer_Loaded;
-        }
-
-       
     }
 }
