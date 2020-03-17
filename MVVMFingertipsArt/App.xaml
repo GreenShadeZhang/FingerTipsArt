@@ -16,10 +16,8 @@
                 <ResourceDictionary Source="/Styles/_FontSizes.xaml" />
                 <ResourceDictionary Source="/Styles/_Thickness.xaml" />
                 <ResourceDictionary Source="Resources/Brushes.xaml" />
-                <!--<ResourceDictionary Source="Resources/Styles.xaml"/>-->
                 <ResourceDictionary Source="/Styles/TextBlock.xaml" />
-                <ResourceDictionary Source="/Styles/Page.xaml" />
-                <!--<ResourceDictionary Source="/Nav.xaml" />-->
+                <ResourceDictionary Source="/NavShellStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <FontFamily x:Key="ContentControlThemeFontFamily">Bahnschrift</FontFamily>
         </ResourceDictionary>

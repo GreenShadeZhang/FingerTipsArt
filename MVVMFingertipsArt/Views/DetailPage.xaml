@@ -24,7 +24,7 @@
                 Height="220"
                 Margin="0,80,0,0"
                 VerticalAlignment="Top"
-                Background="{ThemeResource CustomAcrylicBackgroundBrush}">
+                >
 
                 <StackPanel
                     x:Name="TextContainer"
