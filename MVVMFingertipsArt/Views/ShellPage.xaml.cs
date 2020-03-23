@@ -45,10 +45,10 @@ namespace MVVMFingertipsArt.Views
                 {
                     ContentFrame.Navigate(typeof(HomePage), null, new DrillInNavigationTransitionInfo());
                 }
-                //else if (navItemTag == "Favorites")
-                //{
-                //    ContentFrame.Navigate(typeof(FavoritesPage), null, new DrillInNavigationTransitionInfo());
-                //}
+                else if (navItemTag == "Favorite")
+                {
+                    ContentFrame.Navigate(typeof(FavoritesPage), null, new DrillInNavigationTransitionInfo());
+                }
                 else if (navItemTag == "BingPic")
                 {
                     ContentFrame.Navigate(typeof(BingWallPaper), null, new DrillInNavigationTransitionInfo());

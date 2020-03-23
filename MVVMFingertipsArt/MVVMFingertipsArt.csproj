@@ -116,6 +116,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\BooleanToEnumConverter.cs" />
     <Compile Include="Helpers\EnumToBooleanConverter.cs" />
     <Compile Include="Helpers\Json.cs" />
     <Compile Include="Helpers\NavigationHelper.cs" />
@@ -123,13 +124,13 @@
     <Compile Include="Helpers\RelayCommand.cs" />
     <Compile Include="Helpers\SettingsStorageExtensions.cs" />
     <Compile Include="Helpers\TitleBarHelper.cs" />
+    <Compile Include="Models\FavoriteData.cs" />
     <Compile Include="Models\HomeItemData.cs" />
     <Compile Include="Models\OrigamiDetail.cs" />
     <Compile Include="Models\PageList.cs" />
-    <Compile Include="Models\Pic.cs" />
     <Compile Include="Models\WallPapersData.cs" />
     <Compile Include="Models\WallpapersDetail.cs" />
-    <Compile Include="Services\GetDbDataService.cs" />
+    <Compile Include="Services\DbDataService.cs" />
     <Compile Include="Services\ItemsToShow.cs" />
     <Compile Include="Services\ThemeSelectorService.cs" />
     <Compile Include="Services\WallpaperService.cs" />
@@ -330,6 +331,9 @@
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
     <Content Include="Assets\BuildCast345.svg" />
     <Content Include="Assets\BuildCast.svg" />
+    <Content Include="Assets\blogging_old.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\blogging.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -34,7 +34,7 @@
         </Storyboard>
     </Page.Resources>
     <Grid>
-        <FlipView x:Name="flipView"
+        <!--<FlipView x:Name="flipView"
                   Visibility="Collapsed"
                   FocusVisualPrimaryThickness="1,1,1,1"
                   ItemsSource="{x:Bind  ViewModel.Source.PicList}"
@@ -71,6 +71,6 @@
               Background="{ThemeResource FlipViewBackground}" />
         <Image x:Name="previewImage"
                Visibility="Collapsed"
-               Source="{x:Bind ViewModel.SelectedImage.(data:Pic.MovieUrl), Mode=OneWay}" />
+               Source="{x:Bind ViewModel.SelectedImage.(data:Pic.MovieUrl), Mode=OneWay}" />-->
     </Grid>
 </Page>

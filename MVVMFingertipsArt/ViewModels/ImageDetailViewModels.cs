@@ -27,7 +27,7 @@ namespace MVVMFingertipsArt.ViewModels
             set
             {
                 Set(ref _selectedImage, value);
-              ApplicationData.Current.LocalSettings.SaveString(DetailViewModels.ImageGallerySelectedIdKey, ((Pic)SelectedImage).Id.ToString());
+             // ApplicationData.Current.LocalSettings.SaveString(DetailViewModels.ImageGallerySelectedIdKey, ((Pic)SelectedImage).Id.ToString());
             }
         }     
         public OrigamiDetail Source
@@ -39,7 +39,7 @@ namespace MVVMFingertipsArt.ViewModels
         {      
             Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
             Int32 sampleImageId = (Int32)localSettings.Values["ID"];
-            _source = GetDbDataService.GetOrigamiData(sampleImageId);
+            _source = DbDataService.GetOrigamiData(sampleImageId);
         }
 
         public void SetImage(UIElement image) => _image = image;
@@ -49,14 +49,14 @@ namespace MVVMFingertipsArt.ViewModels
          
             if (!string.IsNullOrEmpty(sampleImageId.ToString()) && navigationMode == NavigationMode.New)
             {
-                SelectedImage = Source.PicList.FirstOrDefault(i => i.Id == sampleImageId);
+               //SelectedImage = Source.PicList.FirstOrDefault(i => i.Id == sampleImageId);
             }
             else
             {
                var selectedImageId = await ApplicationData.Current.LocalSettings.ReadAsync<string>(DetailViewModels.ImageGallerySelectedIdKey);
                 if (!string.IsNullOrEmpty(selectedImageId))
                 {
-                    SelectedImage = Source.PicList.FirstOrDefault(i => i.Id.ToString() == selectedImageId);
+                   // SelectedImage = Source.PicList.FirstOrDefault(i => i.Id.ToString() == selectedImageId);
                 }
             }
 

@@ -50,7 +50,7 @@ namespace MVVMFingertipsArt.ViewModels
          
             Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
           Int32  sampleImageId = (Int32)localSettings.Values["ID"];
-            _source = GetDbDataService.GetOrigamiData(sampleImageId);
+            _source = DbDataService.GetOrigamiData(sampleImageId);
            // Source = null;
         }
 
@@ -72,9 +72,9 @@ namespace MVVMFingertipsArt.ViewModels
                 var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation(ImageGalleryAnimationClose);
                 if (animation != null)
                 {
-                    var item = _imagesGridView.Items.Where(i => ((Pic)i).Id .ToString()== selectedImageId);
-                    _imagesGridView.ScrollIntoView(item);
-                    await _imagesGridView.TryStartConnectedAnimationAsync(animation, item, "ItemThumbnail");
+                    //var item = _imagesGridView.Items.Where(i => ((Pic)i).Id .ToString()== selectedImageId);
+                    //_imagesGridView.ScrollIntoView(item);
+                   // await _imagesGridView.TryStartConnectedAnimationAsync(animation, item, "ItemThumbnail");
                 }
 
                 //ApplicationData.Current.LocalSettings.SaveString(ImageGallerySelectedIdKey, string.Empty);
@@ -84,10 +84,10 @@ namespace MVVMFingertipsArt.ViewModels
 
         private void OnsItemSelected(ItemClickEventArgs args)
         {
-            var selected = args.ClickedItem as Pic;
+            //var selected = args.ClickedItem as Pic;
           
              //imagesGridView.PrepareConnectedAnimation(ImageGalleryAnimationOpen, selected, "ItemThumbnail");
-            ShellPage.RootFrame.Navigate(typeof(ImageDetailPage),selected.Id, new DrillInNavigationTransitionInfo());
+            //ShellPage.RootFrame.Navigate(typeof(ImageDetailPage),selected.Id, new DrillInNavigationTransitionInfo());
         }
 
        

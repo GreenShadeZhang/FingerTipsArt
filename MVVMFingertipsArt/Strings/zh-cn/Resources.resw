@@ -183,7 +183,7 @@
   <data name="AddData.Text" xml:space="preserve">
     <value>添加收藏</value>
   </data>
-  <data name="playButton.Text" xml:space="preserve">
+  <data name="playButton.Label" xml:space="preserve">
     <value>播放</value>
   </data>
   <data name="Shell_Favorites.Content" xml:space="preserve">
@@ -197,5 +197,23 @@
   </data>
   <data name="Page.Text" xml:space="preserve">
     <value>步骤</value>
+  </data>
+  <data name="FavBtn.Label" xml:space="preserve">
+    <value>收藏</value>
+  </data>
+  <data name="SwipeUnfavorite.Text" xml:space="preserve">
+    <value>取消收藏</value>
+  </data>
+  <data name="FavLabel" xml:space="preserve">
+    <value>收藏</value>
+  </data>
+  <data name="UnFavLabel" xml:space="preserve">
+    <value>取消收藏</value>
+  </data>
+  <data name="Favorite.Content" xml:space="preserve">
+    <value>收藏</value>
+  </data>
+  <data name="UnfaveButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>取消收藏</value>
   </data>
 </root>

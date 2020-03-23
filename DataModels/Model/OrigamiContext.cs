@@ -1,13 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace DataModels.Model
 {
     public class OrigamiContext : DbContext
     {
-        public DbSet<Origami> origamis { get; set; }
+        public DbSet<Origami> Origamis { get; set; }
+        public DbSet<Favorite> Favorites { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //optionsBuilder.UseSqlite("Data Source=mynew.db");
@@ -19,14 +21,23 @@ namespace DataModels.Model
         /// </summary>
         public string DbFilePath { get; set; }
     }
+
+    public class Favorite
+    {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
+        public int OrigamiId { get; set; }
+        public DateTime CreateDate { get; set; }
+        public Origami Origami { get; set; }
+    }
     public class Origami
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         /// <summary>
         /// 折纸的Id
         /// </summary>
-        public int OrigamiId { get; set; }
+        public int Id { get; set; }
         public string NameId { get; set; }
-        public string PicList { get; set; }
         public string Title { get; set; }
         public string Name { get; set; }
         /// <summary>

@@ -30,7 +30,7 @@ namespace MVVMFingertipsArt.Views
         {
             try
             {
-                var res = await GetDbDataService.GetHomeDataListAsync(0, 50);
+                var res = await DbDataService.GetHomeDataListAsync(0, 50);
                 var homeItemdatas = new ObservableCollection<HomeItemData>();
                 foreach (var item in res)
                 {

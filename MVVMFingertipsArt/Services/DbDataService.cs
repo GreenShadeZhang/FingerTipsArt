@@ -12,7 +12,7 @@ using System.Collections.ObjectModel;
 
 namespace MVVMFingertipsArt.Services
 {
-    public class GetDbDataService
+    public class DbDataService
     {
         public static string Path { get; set; }
         /// <summary>
@@ -26,7 +26,7 @@ namespace MVVMFingertipsArt.Services
             {
                 //这里是传绝对路径给的数据上下文
                 db.DbFilePath = Path;
-                origami = db.origamis.Where(os => os.OrigamiId == id).FirstOrDefault();
+                origami = db.Origamis.Where(os => os.Id == id).FirstOrDefault();
             }
             return new OrigamiDetail(origami);
         }
@@ -38,7 +38,7 @@ namespace MVVMFingertipsArt.Services
             {
                 //这里是传绝对路径给的数据上下文
                 db.DbFilePath = Path;
-                foreach (var item in db.origamis)
+                foreach (var item in db.Origamis)
                 {
                     homeItemdatas.Add(new HomeItemData(item));
                 }
@@ -53,7 +53,7 @@ namespace MVVMFingertipsArt.Services
             {
                 //这里是传绝对路径给的数据上下文
                 db.DbFilePath = Path;
-                var blogs = await db.origamis.Where(o => o.Language == Lan).OrderByDescending(c => c.Name).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+                var blogs = await db.Origamis.Where(o => o.Language == Lan).OrderByDescending(c => c.Name).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
                 return blogs;
             }
         }
@@ -82,14 +82,13 @@ namespace MVVMFingertipsArt.Services
                         dbFile = await originalDbFile.CopyAsync(localFolder, "mynew.db", NameCollisionOption.ReplaceExisting);
 
                     }
-                }                
+                }
                 Path = dbFile.Path;
                 using (var db = new OrigamiContext())
                 {
                     //这里是传绝对路径给的数据上下文
                     db.DbFilePath = Path;
                     db.Database.Migrate();
-
                 }
             }
             catch (Exception ex)
@@ -98,5 +97,82 @@ namespace MVVMFingertipsArt.Services
             }
 
         }
+        public async static Task<bool> FavoriteOrigamiAsync(int id)
+        {
+            bool ret = false;
+            Favorite favorite = new Favorite()
+            {
+                CreateDate = DateTime.Now,
+                OrigamiId = id
+            };
+            using (var db = new OrigamiContext())
+            {
+                //这里是传绝对路径给的数据上下文
+                db.DbFilePath = Path;
+                await db.Favorites.AddAsync(favorite);
+                int res = await db.SaveChangesAsync();
+                ret = res > 0 ? true : false;
+            }
+            return ret;
+        }
+
+
+        public  static ObservableCollection<FavoriteData> FavoriteOrigamiList()
+        {
+          var list = new ObservableCollection<FavoriteData>();
+
+            using (var db = new OrigamiContext())
+            {
+                //这里是传绝对路径给的数据上下文
+                db.DbFilePath = Path;
+                var listFav = db.Favorites.Include(f => f.Origami).OrderByDescending(f => f.CreateDate).ToList();
+                if (listFav != null && listFav.Count > 0)
+                {
+                    foreach (var item in listFav)
+                    {
+
+                        list.Add(new FavoriteData(item));
+                    }
+                }               
+            }
+            return list;
+        }
+
+        public static void FavoriteOrigamiRemove(int id)
+        {       
+            using (var db = new OrigamiContext())
+            {
+                //这里是传绝对路径给的数据上下文
+                db.DbFilePath = Path;
+                foreach (Favorite favEntity in db.Favorites)
+                {
+                    if (id <= 0)
+                    {
+                        break;
+                    }
+
+                    if (favEntity.Id == id)
+                    {
+                        db.Favorites.Remove(favEntity);
+                        break;
+                    }
+                }
+
+                db.SaveChanges();
+
+                // await LoadFavorites();
+            }
+        }
+
+        public static bool FavExists(int id)
+        {
+            using (var db = new OrigamiContext())
+            {
+               //这里是传绝对路径给的数据上下文
+                db.DbFilePath = Path;
+                return db.Favorites.Any(f => f.OrigamiId == id);
+            }           
+        }
+
     }
 }

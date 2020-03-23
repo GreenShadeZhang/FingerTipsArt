@@ -29,10 +29,10 @@ namespace MVVMFingertipsArt.Views
         public ImageDetailPage()
         {
             this.InitializeComponent();
-            ViewModel.SetImage(previewImage);
+            //ViewModel.SetImage(previewImage);
 
         }
-        private void OnShowFlipViewCompleted(object sender, object e) => flipView.Focus(FocusState.Programmatic);
+        private void OnShowFlipViewCompleted(object sender, object e) { }// => flipView.Focus(FocusState.Programmatic);
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);

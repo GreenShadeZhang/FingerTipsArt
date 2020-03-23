@@ -17,7 +17,7 @@ namespace MVVMFingertipsArt.Models
         public int Status { get; set; }
         public HomeItemData(Origami origami)
         {
-            this.OrigamiId = origami.OrigamiId;
+            this.OrigamiId = origami.Id;
             this.Title = origami.Title;
             this.Name = origami.Name;
             this.Avatar = origami.Avatar;

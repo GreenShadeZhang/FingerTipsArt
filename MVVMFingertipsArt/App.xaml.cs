@@ -97,8 +97,8 @@ namespace MVVMFingertipsArt
             //ThemeSelectorService.SetupTitlebar();
             //var dbFile =  Windows.Storage.ApplicationData.Current.LocalFolder.Path;
             //GetDbDataService.Path = dbFile;
-            GetDbDataService.Lan = Microsoft.Toolkit.Uwp.Helpers.SystemInformation.Culture.Name.ToLower();
-            await GetDbDataService.MakeSureSqliteExsitAsync();
+            DbDataService.Lan = Microsoft.Toolkit.Uwp.Helpers.SystemInformation.Culture.Name.ToLower();
+            await DbDataService.MakeSureSqliteExsitAsync();
             await Task.CompletedTask;
         }
         /// <summary>

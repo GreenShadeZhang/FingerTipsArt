@@ -12,27 +12,50 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource CustomAcrylicBackgroundBrush}">
-        <Grid x:Name="BackgroundPanel">
-        </Grid>
         <!--  Style="{StaticResource NavigationViewStyleNav}"  -->
-        <con:NavigationView Style="{StaticResource NavShell}"
-                            x:Name="NavShell" ItemInvoked="NavShell_ItemInvoked">
+        <con:NavigationView
+            x:Name="NavShell"
+            FontFamily="Î¢ÈíÑÅºÚ"
+            ItemInvoked="NavShell_ItemInvoked"
+            Style="{StaticResource NavShell}">
             <con:NavigationView.MenuItems>
-                <con:NavigationViewItem x:Uid="Home" Tag="HomePage" />
-                <con:NavigationViewItem x:Uid="Bing" Tag="BingPic" />
-            </con:NavigationView.MenuItems>
-            <Grid>
-                <Frame x:Name="ContentFrame" Navigated="ContentFrame_Navigated" />
-            </Grid>
+                <con:NavigationViewItem
+                    x:Uid="Home"
+                    FontFamily="Î¢ÈíÑÅºÚ"
+                    Tag="HomePage">
+                    <con:NavigationViewItem.Icon>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE10F;" />
+                    </con:NavigationViewItem.Icon>
+                </con:NavigationViewItem>
+                <con:NavigationViewItem
+                    x:Uid="Bing"
+                    FontFamily="Î¢ÈíÑÅºÚ"
+                    Tag="BingPic">
+                    <con:NavigationViewItem.Icon>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE790;" />
+                    </con:NavigationViewItem.Icon>
+                </con:NavigationViewItem>
+                <con:NavigationViewItem
+                    x:Uid="Favorite"
+                    FontFamily="Î¢ÈíÑÅºÚ"
+                    Tag="Favorite">
+                    <con:NavigationViewItem.Icon>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE735;" />
+                    </con:NavigationViewItem.Icon>
+                </con:NavigationViewItem>
 
-            <con:NavigationView.PaneFooter>
+            </con:NavigationView.MenuItems>
+            <!--<con:NavigationView.PaneFooter>
                 <StackPanel x:Name="FooterStackPanel" Visibility="Visible">
-                    <con:NavigationViewItem Icon="Favorite" AutomationProperties.Name="favorite" />
+                    <con:NavigationViewItem Icon="Favorite"
+                                            Tag="Favorite"
+                                            AutomationProperties.Name="favorite" />
                 </StackPanel>
-            </con:NavigationView.PaneFooter>
+            </con:NavigationView.PaneFooter>-->
+            <Frame x:Name="ContentFrame" Navigated="ContentFrame_Navigated" />
         </con:NavigationView>
-                
-            <VisualStateManager.VisualStateGroups>
+
+        <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState>
                     <VisualState.StateTriggers>

@@ -42,7 +42,7 @@ namespace MVVMFingertipsArt.Services
 
             return Task.Run(async () =>
             {
-                var res = await GetDbDataService.GetHomeDataListAsync(index, 9);
+                var res = await DbDataService.GetHomeDataListAsync(index, 9);
                 index++;
                 //totalCount = res.ItemCount;
                 //var homeItemdatas = new ObservableCollection<HomeItemData>();
