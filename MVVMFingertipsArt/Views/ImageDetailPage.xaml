@@ -2,34 +2,32 @@
     x:Class="MVVMFingertipsArt.Views.ImageDetailPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:MVVMFingertipsArt.Views"
+    xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:data="using:MVVMFingertipsArt.Models"
+    xmlns:local="using:MVVMFingertipsArt.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-      KeyDown="OnPageKeyDown"
-      xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
-      xmlns:data="using:MVVMFingertipsArt.Models"
-    >
+    KeyDown="OnPageKeyDown"
+    mc:Ignorable="d">
     <Page.Resources>
-        <Storyboard x:Name="showFlipView"
-                    Completed="OnShowFlipViewCompleted">
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
-                                           Storyboard.TargetName="flipView"
-                                           BeginTime="0:0:0.5">
-                <DiscreteObjectKeyFrame KeyTime="0"
-                                        Value="Visible" />
+        <Storyboard x:Name="showFlipView" Completed="OnShowFlipViewCompleted">
+            <ObjectAnimationUsingKeyFrames
+                BeginTime="0:0:0.5"
+                Storyboard.TargetName="flipView"
+                Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
             </ObjectAnimationUsingKeyFrames>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
-                                           Storyboard.TargetName="shapeGrid"
-                                           BeginTime="0:0:0.5">
-                <DiscreteObjectKeyFrame KeyTime="0"
-                                        Value="Collapsed" />
+            <ObjectAnimationUsingKeyFrames
+                BeginTime="0:0:0.5"
+                Storyboard.TargetName="shapeGrid"
+                Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
             </ObjectAnimationUsingKeyFrames>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
-                                           Storyboard.TargetName="previewImage"
-                                           BeginTime="0:0:0.6">
-                <DiscreteObjectKeyFrame KeyTime="0"
-                                        Value="Collapsed" />
+            <ObjectAnimationUsingKeyFrames
+                BeginTime="0:0:0.6"
+                Storyboard.TargetName="previewImage"
+                Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
             </ObjectAnimationUsingKeyFrames>
         </Storyboard>
     </Page.Resources>
@@ -67,7 +65,7 @@
         </FlipView>
 
 
-        <Grid x:Name="shapeGrid"           
+        <Grid x:Name="shapeGrid"
               Background="{ThemeResource FlipViewBackground}" />
         <Image x:Name="previewImage"
                Visibility="Collapsed"
