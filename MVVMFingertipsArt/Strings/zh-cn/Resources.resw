@@ -216,4 +216,13 @@
   <data name="UnfaveButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>取消收藏</value>
   </data>
+  <data name="ErrorMsg" xml:space="preserve">
+    <value>保存出错，请检查网络。</value>
+  </data>
+  <data name="FileName" xml:space="preserve">
+    <value>保存成功</value>
+  </data>
+  <data name="Save.Text" xml:space="preserve">
+    <value>保存</value>
+  </data>
 </root>

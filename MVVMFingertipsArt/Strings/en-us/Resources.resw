@@ -216,4 +216,13 @@
   <data name="UnfaveButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Unfavorite</value>
   </data>
+  <data name="ErrorMsg" xml:space="preserve">
+    <value>There was an error saving, please check the network.</value>
+  </data>
+  <data name="FileName" xml:space="preserve">
+    <value>Saved successfully</value>
+  </data>
+  <data name="Save.Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
 </root>

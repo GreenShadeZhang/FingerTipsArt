@@ -1,4 +1,5 @@
-﻿using MVVMFingertipsArt.Models;
+﻿using Microsoft.Toolkit.Uwp.Extensions;
+using MVVMFingertipsArt.Models;
 using MVVMFingertipsArt.Services;
 using System;
 using System.Collections.Generic;
@@ -34,27 +35,33 @@ namespace MVVMFingertipsArt.Views
         private WallpapersDetail wallpapers;
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Pro.Visibility = Visibility.Visible;
-            Pro.IsActive = true;
-            WallpaperService wallpaperService = new WallpaperService();
-            WallpapersData wallpapersData = await wallpaperService.GetWallparper(0, 9);
-            //此集合为GridView的source
-            ObservableCollection<WallpapersDetail> picModels = new ObservableCollection<WallpapersDetail>();
-            //通过重新组装成集合给GridView
-            foreach (var item in wallpapersData.images)
+            try
             {
-                picModels.Add(new WallpapersDetail()
+                Pro.Visibility = Visibility.Visible;
+                Pro.IsActive = true;
+                WallpaperService wallpaperService = new WallpaperService();
+                WallpapersData wallpapersData = await wallpaperService.GetWallparper(0, 9);
+                //此集合为GridView的source
+                ObservableCollection<WallpapersDetail> picModels = new ObservableCollection<WallpapersDetail>();
+                //通过重新组装成集合给GridView
+                foreach (var item in wallpapersData.images)
                 {
-                    Title = item.copyright,
-                    Source = "https://www.bing.com" + item.url,
-                    FileName = item.enddate
+                    picModels.Add(new WallpapersDetail()
+                    {
+                        Title = item.copyright,
+                        Source = "https://www.bing.com" + item.url,
+                        FileName = item.enddate
 
-                });
+                    });
+                }
+                Gv.ItemsSource = picModels;
+                Pro.Visibility = Visibility.Collapsed;
+                Pro.IsActive = false;
             }
-            Gv.ItemsSource = picModels;
-            Pro.Visibility = Visibility.Collapsed;
-            Pro.IsActive = false;
-            base.OnNavigatedTo(e);
+            catch
+            {
+
+            }
 
         }
 
@@ -78,7 +85,9 @@ namespace MVVMFingertipsArt.Views
                 StorageFolder destinationFolder = await KnownFolders.PicturesLibrary.CreateFolderAsync("FingertipsArt", CreationCollisionOption.OpenIfExists);
                 var destinationFile = await destinationFolder.CreateFileAsync(wallpapers.FileName + ".jpg", CreationCollisionOption.ReplaceExisting);
                 await FileIO.WriteBufferAsync(destinationFile, adc);
-                ExampleInAppNotification.Show("保存" + wallpapers.FileName + ".jpg" + "成功", 2000);
+
+                var FileName = "FileName".GetLocalized();
+                ExampleInAppNotification.Show(FileName + wallpapers.FileName + ".jpg", 2000);
                 Pro.Visibility = Visibility.Collapsed;
                 Pro.IsActive = false;
                 //MessageDialog messageDialog = new MessageDialog("图片已保存到图库", "恭喜你");
@@ -86,7 +95,8 @@ namespace MVVMFingertipsArt.Views
             }
             catch
             {
-                ExampleInAppNotification.Show("保存出错，请检查网络。", 3000);
+                var ErrorMsg = "ErrorMsg".GetLocalized();
+                ExampleInAppNotification.Show(ErrorMsg, 3000);
                 //MessageDialog messageDialog = new MessageDialog("保存出错", "抱歉");
                 //await messageDialog.ShowAsync();
             }

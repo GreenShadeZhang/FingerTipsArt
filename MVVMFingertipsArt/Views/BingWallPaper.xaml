@@ -46,8 +46,8 @@
                 <MenuFlyout Opening="MenuFlyout_Opening">
                     <MenuFlyoutItem
                         x:Name="Save"
-                        Click="Save_Click"
-                        Text="保存" />
+                        x:Uid="Save"
+                        Click="Save_Click" />
                 </MenuFlyout>
             </controls:AdaptiveGridView.ContextFlyout>
         </controls:AdaptiveGridView>

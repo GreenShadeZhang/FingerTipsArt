@@ -117,9 +117,9 @@ namespace MVVMFingertipsArt.Services
         }
 
 
-        public  static ObservableCollection<FavoriteData> FavoriteOrigamiList()
+        public static ObservableCollection<FavoriteData> FavoriteOrigamiList()
         {
-          var list = new ObservableCollection<FavoriteData>();
+            var list = new ObservableCollection<FavoriteData>();
 
             using (var db = new OrigamiContext())
             {
@@ -133,13 +133,13 @@ namespace MVVMFingertipsArt.Services
 
                         list.Add(new FavoriteData(item));
                     }
-                }               
+                }
             }
             return list;
         }
 
         public static void FavoriteOrigamiRemove(int id)
-        {       
+        {
             using (var db = new OrigamiContext())
             {
                 //这里是传绝对路径给的数据上下文
@@ -151,7 +151,7 @@ namespace MVVMFingertipsArt.Services
                         break;
                     }
 
-                    if (favEntity.Id == id)
+                    if (favEntity.Id == id || favEntity.OrigamiId == id)
                     {
                         db.Favorites.Remove(favEntity);
                         break;
@@ -159,8 +159,6 @@ namespace MVVMFingertipsArt.Services
                 }
 
                 db.SaveChanges();
-
-                // await LoadFavorites();
             }
         }
 
@@ -168,10 +166,10 @@ namespace MVVMFingertipsArt.Services
         {
             using (var db = new OrigamiContext())
             {
-               //这里是传绝对路径给的数据上下文
+                //这里是传绝对路径给的数据上下文
                 db.DbFilePath = Path;
                 return db.Favorites.Any(f => f.OrigamiId == id);
-            }           
+            }
         }
 
     }

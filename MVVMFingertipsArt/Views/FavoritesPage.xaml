@@ -147,7 +147,7 @@
                 <Grid Background="{ThemeResource SystemControlTransparentBrush}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="208" />
-                        <ColumnDefinition Width="*" MinWidth="120" />
+                        <ColumnDefinition Width="*" MinWidth="140" />
                         <ColumnDefinition Width="80" />
                         <!--<ColumnDefinition Width="100"></ColumnDefinition>
                         <ColumnDefinition Width="132"></ColumnDefinition>-->

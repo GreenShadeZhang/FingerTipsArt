@@ -48,9 +48,9 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center">
                     <Grid.RowDefinitions>
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
+                        <RowDefinition Height="3*" />
+                        <RowDefinition Height="8*" />
+                        <RowDefinition Height="3*" />
                     </Grid.RowDefinitions>
                     <TextBlock
                         x:Name="TitleBlock"
@@ -62,12 +62,11 @@
                     <TextBlock
                         x:Name="Introduce"
                         Grid.Row="1"
-                        Width="400"
-                        Margin="8,8,0,20"
+                        MaxWidth="800"
+                        Margin="8"
                         FontSize="12"
-                        TextWrapping="Wrap">
-                        <Run Text="{x:Bind OrigamiDetail.Introduce}" />
-                    </TextBlock>
+                        Text="{x:Bind OrigamiDetail.Introduce}"
+                        TextWrapping="Wrap" />
                     <CommandBar
                         x:Name="CdBar"
                         Grid.Row="2"
@@ -95,7 +94,6 @@
             </Grid>
             <ScrollViewer
                 Grid.Row="1"
-                Margin="0,0,0,0"
                 HorizontalScrollBarVisibility="Auto"
                 ZoomMode="Enabled">
                 <Image
@@ -123,7 +121,7 @@
                         <Setter Target="TeachImg.Width" Value="800" />
                         <Setter Target="Header.Margin" Value="0,0,0,0" />
                         <Setter Target="TitleBlock.FontSize" Value="36" />
-                        <Setter Target="Introduce.FontSize" Value="28" />
+                        <Setter Target="Introduce.FontSize" Value="20" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
