@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppDisplayName" xml:space="preserve">
-    <value>FingertipsArt</value>
+    <value>指尖艺术</value>
     <comment>Application display name</comment>
   </data>
   <data name="AppDescription" xml:space="preserve">
@@ -224,5 +224,8 @@
   </data>
   <data name="Save.Text" xml:space="preserve">
     <value>保存</value>
+  </data>
+  <data name="FavHeader.Text" xml:space="preserve">
+    <value>收藏列表</value>
   </data>
 </root>

@@ -23,6 +23,7 @@ namespace MVVMFingertipsArt.Models
             this.Avatar = origami.Avatar;
             this.MovieUrl = origami.MovieUrl;
             this.Title = origami.Title;
+            this.Name = origami.Name;
             this.Introduce = origami.Introduce;
         }
     }

@@ -70,7 +70,7 @@
                             Orientation="Vertical">
                             <TextBlock
                                 HorizontalTextAlignment="Left"
-                                Text="{x:Bind Title}"
+                                Text="{x:Bind Name}"
                                 TextWrapping="WrapWholeWords" />
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock
@@ -188,7 +188,7 @@
                             Orientation="Vertical">
                             <TextBlock
                                 HorizontalTextAlignment="Left"
-                                Text="{x:Bind Title}"
+                                Text="{x:Bind Name}"
                                 TextWrapping="WrapWholeWords" />
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock
@@ -254,10 +254,21 @@
                     Source="{x:Bind Avatar}" />
                 <TextBlock
                     Grid.Row="1"
+                    Margin="4"
                     HorizontalAlignment="Center"
                     FontFamily="微软雅黑"
                     FontSize="36"
                     Text="{x:Bind Name}" />
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="FavHeader">
+            <Grid>
+                <TextBlock
+                    x:Uid="FavHeader"
+                    HorizontalAlignment="Left"
+                    FontFamily="微软雅黑"
+                    FontSize="32" />
             </Grid>
         </DataTemplate>
     </Page.Resources>
@@ -266,6 +277,7 @@
             x:Name="HomeGrid"
             Grid.Row="1"
             Margin="24,80,24,40"
+            HeaderTemplate="{StaticResource FavHeader}"
             IsItemClickEnabled="True"
             ItemClick="HomeGrid_ItemClick"
             ItemTemplate="{StaticResource favoriteTemplate}"

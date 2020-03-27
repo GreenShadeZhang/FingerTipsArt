@@ -122,7 +122,7 @@
     <comment>Application display name</comment>
   </data>
   <data name="AppDescription" xml:space="preserve">
-    <value>MVVMFingertipsArt</value>
+    <value>FingertipsArt</value>
     <comment>Application description</comment>
   </data>
   <data name="Shell_Home.Content" xml:space="preserve">
@@ -224,5 +224,8 @@
   </data>
   <data name="Save.Text" xml:space="preserve">
     <value>Save</value>
+  </data>
+  <data name="FavHeader.Text" xml:space="preserve">
+    <value>Favorites</value>
   </data>
 </root>

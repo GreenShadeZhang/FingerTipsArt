@@ -30,13 +30,15 @@ namespace MVVMFingertipsArt.Views
         {
             try
             {
-                var res = await DbDataService.GetHomeDataListAsync(0, 50);
+                HomeRing.IsActive = true;
+                var res = await DbDataService.GetHomeDataListAsync(0, 100);
                 var homeItemdatas = new ObservableCollection<HomeItemData>();
                 foreach (var item in res)
                 {
                     homeItemdatas.Add(new HomeItemData(item));
                 }
                 HomeGrid.ItemsSource = homeItemdatas;
+                HomeRing.IsActive = false;
             }
             catch (Exception ex)
             {

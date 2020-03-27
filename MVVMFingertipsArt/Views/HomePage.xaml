@@ -64,15 +64,6 @@
                 <SvgImageSource UriSource="ms-appx:///Assets/BuildCast.svg" />
             </Image.Source>
         </Image>
-
-        <!--<GridView
-            x:Name="HomeGrid"
-            Grid.Row="1"
-            HorizontalAlignment="Center"
-            IsItemClickEnabled="True"
-            ItemClick="HomeGrid_ItemClick"
-            ItemContainerTransitions="{x:Null}"
-            ItemTemplate="{StaticResource Small}" />-->
         <controls:AdaptiveGridView
             x:Name="HomeGrid"
             Grid.Row="1"
@@ -85,7 +76,7 @@
             SelectionMode="Single" />
         <ProgressRing
             x:Name="HomeRing"
-            Grid.Row="1"
+            Grid.RowSpan="2"
             Width="200"
             Height="200" />
         <!--  ContainerContentChanging="HomeGrid_ContainerContentChanging"  -->
